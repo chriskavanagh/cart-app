@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="starter-template">
+            <h1>L.L. Bean Online Store</h1>
+            <h3>Shop For Your Favorite Clothes. . .</h3>
+            <hr/>
+                <ul class="fa-ul">
+                    {% for product in products %}
+                    <li><i class="fa-li fa fa-check-square"></i><h4><a href="{{ product.get_absolute_url }}">{{ product }}: ${{ product.price }}</a></h4></li>
+                    <hr>
+                    {% endfor %}
+                </ul>
+        </div>
+    </div>
+{% endblock %}
+   

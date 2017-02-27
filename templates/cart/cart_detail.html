@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+    {% block content %}
+    
+    <div class="container">
+        <div class="starter-template">
+            <h1>L.L. Bean Online Store</h1>
+            <h2><i class="fa fa-cart-plus fa-1x" aria-hidden="true"></i>&nbsp; Your Cart, {{ request.user|capfirst }}</h2>
+            <hr/>           
+            <hr/>
+            
+    <div class="row">
+        <div class="col-md-12">
+                <ul class="fa-ul">
+                {% for item in cart %}
+                    
+                    <li><i class="fa-li fa fa-check-square"></i><a href="{{ item.product.get_absolute_url }}">{{ item.product }}&nbsp; </a>(Unit Price: ${{ item.price }}) - Price: <strong>${{ item.total_price }}</strong>
+                        
+                        <a href="{% url 'cart:remove_item' item.product.pk %}" style="float:right;padding-left:10px;margin-left:10px;color:red;">Remove Item</a>
+                        
+                        <form class="form-inline" action="{% url 'cart:add_item' item.product.pk %}" method="POST" style="float:right">                            
+                                {% csrf_token %}
+                            <div class="form-group">
+                                {{ item.update_quantity_form.quantity }}
+                            </div>                            
+                                {{ item.update_quantity_form.update }} <!--hidden field-->                            
+                            
+                            <button type="submit" class="btn btn-primary btn-sm">Update Cart</button>
+                            
+                        </form>
+                        
+                    <hr>
+                    </li>
+                {% empty %}                    
+                    <li>You Have 0 Products In Your Cart</li>
+                {% endfor %}
+                </ul>
+        </div>
+    </div>
+        </div>
+    </div>
+    
+    {% endblock %}
+    
