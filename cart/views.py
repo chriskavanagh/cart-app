@@ -15,14 +15,12 @@ def show_cart(request):
 	for product in products:
 		cart[str(product.id)]['product'] = product
 		cart[str(product.id)]['price'] = Decimal(cart[str(product.id)]['price'])
-
 		cart[str(product.id)]['total_price'] = cart[str(product.id)]['price'] * \
 						   					   cart[str(product.id)]['quantity']
 
 		q = cart[str(product.id)]['quantity']
-		cart[str(product.id)]['update_quantity_form'] = ItemAddForm(initial={'quantity':q,'update': True})
-	print cart
-																			 																	 
+		cart[str(product.id)]['update_quantity_form'] = ItemAddForm(initial={'quantity':q,
+																			 'update': True})														 																	 
 	cart = cart.values()
 	cxt = {'cart': cart}
 	return render(request, 'cart/cart_detail.html', cxt)
@@ -39,7 +37,9 @@ def add_item(request, pk):
 			quantity = form.cleaned_data['quantity']
 			update = form.cleaned_data['update']
 			if product_id not in cart:
-				cart[product_id] = {'product': product.name,'quantity': quantity,'price': str(product.price)}
+				cart[product_id] = {'product': product.name,
+									'quantity': quantity,
+									'price': str(product.price)}
 															 					
 			if update:
 				cart[product_id]['quantity'] = quantity
@@ -50,7 +50,7 @@ def add_item(request, pk):
 
 
 def remove_item(request, pk):
-	"""del item from user cart."""
+	'''del item from user cart.'''
 	product = get_object_or_404(Product, pk=pk)
 	product_id = str(product.pk)
 	cart = request.session.get(settings.CART_SESSION_ID)
@@ -61,6 +61,6 @@ def remove_item(request, pk):
 
 
 def save_cart(request, c):
-	"""save user cart to session."""
+	'''save user cart to session.'''
 	request.session[settings.CART_SESSION_ID] = c
 	request.session.modified = True

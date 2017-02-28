@@ -6,41 +6,51 @@
     
     <div class="container">
         <div class="starter-template">
-            <h1>L.L. Bean Online Store</h1>
-            <h2><i class="fa fa-cart-plus fa-1x" aria-hidden="true"></i>&nbsp; Your Cart, {{ request.user|capfirst }}</h2>
-            <hr/>           
-            <hr/>
-            
-    <div class="row">
-        <div class="col-md-12">
-                <ul class="fa-ul">
-                {% for item in cart %}
-                    
-                    <li><i class="fa-li fa fa-check-square"></i><a href="{{ item.product.get_absolute_url }}">{{ item.product }}&nbsp; </a>(Unit Price: ${{ item.price }}) - Price: <strong>${{ item.total_price }}</strong>
-                        
-                        <a href="{% url 'cart:remove_item' item.product.pk %}" style="float:right;padding-left:10px;margin-left:10px;color:red;">Remove Item</a>
-                        
-                        <form class="form-inline" action="{% url 'cart:add_item' item.product.pk %}" method="POST" style="float:right">                            
-                                {% csrf_token %}
-                            <div class="form-group">
-                                {{ item.update_quantity_form.quantity }}
-                            </div>                            
-                                {{ item.update_quantity_form.update }} <!--hidden field-->                            
-                            
-                            <button type="submit" class="btn btn-primary btn-sm">Update Cart</button>
-                            
-                        </form>
-                        
-                    <hr>
-                    </li>
-                {% empty %}                    
-                    <li>You Have 0 Products In Your Cart</li>
-                {% endfor %}
-                </ul>
-        </div>
+        
+            <div class="row">
+                <div class="col-xs-12">
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Product</th>
+                                    <th class="text-center">Unit Price</th>
+                                    <th class="text-center">Price</th>
+                                    <th class="text-center">Update Cart</th>
+                                    <th class="text-center">Remove Product</th>            
+                                </tr>        
+                            </thead>
+
+
+                            <tbody>
+                                {% for item in cart %}
+                                <tr>
+                                    <td class="text-center"><a href="{{ item.product.get_absolute_url }}">{{ item.product }}</a></td>
+                                    <td class="text-center">${{ item.price }}</td>
+                                    <td  class="text-center">${{ item.total_price }}</td>
+                                    <td class="text-center"><form class="form-inline" action="{% url 'cart:add_item' item.product.pk %}" method="POST">
+                                                    {% csrf_token %}
+                                                <div class="form-group">
+                                                    {{ item.update_quantity_form.quantity }}
+                                                </div>
+                                                    {{ item.update_quantity_form.update }}
+                                                <button type="submit" class="btn btn-primary btn-sm">Update Cart</button>
+                                        </form>
+                                    </td>
+                                    <td class="text-center"><a href="{% url 'cart:remove_item' item.product.pk %}">Remove Item</a></td>         
+                                </tr>
+                                
+                                {% empty %}
+
+                                <h3>You Have 0 Products In Your Cart</h3>
+
+                            {% endfor %}
+                                
+                            </tbody>   
+                        </table>
+                    </div>   
+        {% endblock %}         
+         </div>
     </div>
-        </div>
-    </div>
-    
-    {% endblock %}
     

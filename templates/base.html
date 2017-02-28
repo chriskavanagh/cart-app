@@ -13,10 +13,20 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Playball' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Eczar" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">    
     <script src="https://use.fontawesome.com/669640701c.js"></script>
     {% block css %} {% endblock %}
-    <style>body{padding-top:50px;}.starter-template{padding:40px 15px;text-align:center;}#id_quantity{width:65px;}</style>
+    <style>
+        body{padding-top:50px;}
+        .starter-template{padding:40px 15px;text-align:center;}
+        #id_quantity{width:65px;}
+        #top-container{background-color:#3A533A;}
+        .top-h2{margin-bottom:30px;color:yellow;position:relative;top:30px;font-size:60px;font-family:'Playball', Arial, sans-serif;}
+        h4{padding-top:10px;font-family: 'Eczar', serif;color:#DF744A;}
+    
+    </style>
 
     <!--[if IE]>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -47,6 +57,16 @@
         </div>
     </nav>
     
+    <div class="container-fluid" id="top-container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="text-center top-h2">L.L. Bean Online Store</h2>
+                <h4 class="text-center">Your Cart, {{ request.user|capfirst }}</h4>
+                
+            </div>        
+        </div>    
+    </div>
+    
     
     {% block content %}
     {% endblock %}
@@ -54,4 +74,5 @@
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    {% block js %} {% endblock %}
 </body>
