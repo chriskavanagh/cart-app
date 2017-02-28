@@ -57,7 +57,7 @@ def remove_item(request, pk):
 	if product_id in cart:
 		del cart[product_id]
 		save_cart(request, cart)
-	return redirect('shop:product_list')
+	return redirect('cart:show_cart')
 
 
 def save_cart(request, c):

@@ -10,47 +10,48 @@
             <div class="row">
                 <div class="col-xs-12">
 
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th class="text-center">Product</th>
-                                    <th class="text-center">Unit Price</th>
-                                    <th class="text-center">Price</th>
-                                    <th class="text-center">Update Cart</th>
-                                    <th class="text-center">Remove Product</th>            
-                                </tr>        
-                            </thead>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Product</th>
+                            <th class="text-center">Unit Price</th>
+                            <th class="text-center">Price</th>
+                            <th class="text-center">Update Cart</th>
+                            <th class="text-center">Remove Product</th>            
+                        </tr>        
+                    </thead>
 
+                    <tbody>
+                        {% for item in cart %}
+                        <tr>
+                            <td class="text-center" id="itemProduct"><a href="{{ item.product.get_absolute_url }}">{{ item.product }}</a></td>
+                            <td class="text-center">${{ item.price }}</td>
+                            <td  class="text-center">${{ item.total_price }}</td>
+                            <td class="text-center"><form class="form-inline" action="{% url 'cart:add_item' item.product.pk %}" method="POST">
+                                            {% csrf_token %}
+                                        <div class="form-group">
+                                            {{ item.update_quantity_form.quantity }}
+                                        </div>
+                                            {{ item.update_quantity_form.update }}
+                                        <button type="submit" class="btn btn-primary btn-sm">Update Cart</button>
+                                </form>
+                            </td>
+                            <td class="text-center" id="removeItem"><a href="{% url 'cart:remove_item' item.product.pk %}" class="btn btn-danger btn-sm" role="button">Remove Item</a></td>         
+                        </tr>
 
-                            <tbody>
-                                {% for item in cart %}
-                                <tr>
-                                    <td class="text-center"><a href="{{ item.product.get_absolute_url }}">{{ item.product }}</a></td>
-                                    <td class="text-center">${{ item.price }}</td>
-                                    <td  class="text-center">${{ item.total_price }}</td>
-                                    <td class="text-center"><form class="form-inline" action="{% url 'cart:add_item' item.product.pk %}" method="POST">
-                                                    {% csrf_token %}
-                                                <div class="form-group">
-                                                    {{ item.update_quantity_form.quantity }}
-                                                </div>
-                                                    {{ item.update_quantity_form.update }}
-                                                <button type="submit" class="btn btn-primary btn-sm">Update Cart</button>
-                                        </form>
-                                    </td>
-                                    <td class="text-center"><a href="{% url 'cart:remove_item' item.product.pk %}">Remove Item</a></td>         
-                                </tr>
-                                
-                                {% empty %}
+                        {% empty %}
 
-                                <h3>You Have 0 Products In Your Cart</h3>
+                        <h3>You Have 0 Products In Your Cart</h3>
 
-                            {% endfor %}
-                                
-                            </tbody>   
-                        </table>
-                    </div>   
+                    {% endfor %}
+
+                    </tbody>   
+                </table>
+            </div>   
         {% endblock %}         
          </div>
+        </div>
+        </div>
     </div>
     
