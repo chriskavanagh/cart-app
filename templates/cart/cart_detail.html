@@ -2,6 +2,16 @@
 {% load staticfiles %}
 {% load crispy_forms_tags %}
 
+
+
+    {% block css %} 
+        <style>
+            #li{width:150px;}
+
+        </style>
+
+    {% endblock %}
+
     {% block content %}
     
     <div class="container">
@@ -33,7 +43,7 @@
                                         <div class="form-group">
                                             {{ item.update_quantity_form.quantity }}
                                         </div>
-                                            {{ item.update_quantity_form.update }}
+                                            {{ item.update_quantity_form.update }} <!--hidden form field-->
                                         <button type="submit" class="btn btn-primary btn-sm">Update Cart</button>
                                 </form>
                             </td>
@@ -48,10 +58,20 @@
 
                     </tbody>   
                 </table>
-            </div>   
-        {% endblock %}         
-         </div>
-        </div>
-        </div>
-    </div>
-    
+            </div><!--/.table-responsive-->
+                
+            <div class="row">
+                <div class="col-md-4 pull-right">
+                    <ul class="list-group">
+                        <li class="list-group-item">Sub-Total ${{ cart_total }}</li>
+                        <li class="list-group-item active">Total ${{ cart_total }}</li>
+                    </ul>
+                </div>
+            </div>
+                    
+         </div><!--/.col-->
+        </div><!--/.row-->
+            
+        </div><!--/.starter-template-->
+    </div><!--/.container-->
+    {% endblock %}
