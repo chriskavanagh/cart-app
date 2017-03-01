@@ -37,7 +37,7 @@
                                         <button type="submit" class="btn btn-primary btn-sm">Update Cart</button>
                                 </form>
                             </td>
-                            <td class="text-center" id="removeItem"><a href="{% url 'cart:remove_item' item.product.pk %}" class="btn btn-danger btn-sm" role="button">Remove Item</a></td>         
+                            <td class="text-center" id="removeItem"><a href="{% url 'cart:remove_item' item.product.pk %}" class="btn btn-default btn-sm" role="button">Remove Item</a></td>         
                         </tr>
 
                         {% empty %}

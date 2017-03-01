@@ -60,6 +60,13 @@ def remove_item(request, pk):
 	return redirect('cart:show_cart')
 
 
+def clear_cart(request):
+	cart = request.session.get(settings.CART_SESSION_ID)
+	cart = {}
+	request.session[settings.CART_SESSION_ID] = cart
+	request.session.modified = True
+
+
 def save_cart(request, c):
 	'''save user cart to session.'''
 	request.session[settings.CART_SESSION_ID] = c

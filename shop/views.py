@@ -15,6 +15,6 @@ def product_list(request):
 
 def product_detail(request, slug):
 	product = get_object_or_404(Product, slug=slug, available=True)
-	form = ItemAddForm(initial={'quantity': 1, 'update': True})
+	form = ItemAddForm(initial={'quantity': 1, 'update': False})
 	cxt = {'product': product, 'form': form}
 	return render(request, 'shop/item.html', cxt)
