@@ -9,7 +9,6 @@ from decimal import Decimal
 def show_cart(request):
 	'''display user cart'''
 	cart = request.session.get(settings.CART_SESSION_ID, {})
-	#coupon_id = request.session.get()
 	form = ItemAddForm()
 	coupon_form = CouponApplyForm()
 	product_ids = cart.keys()
@@ -66,7 +65,7 @@ def remove_item(request, pk):
 	return redirect('cart:show_cart')
 
 
-def get_cart_total(request, cart):
+def get_cart_total(request, cart):  #add discount here
 	'''gets cart total price.'''
 	return sum(Decimal(item['price']) * item['quantity'] for item in cart.values())
 
