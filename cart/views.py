@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from coupons.forms import CouponApplyForm
 from django.conf import settings
 from shop.models import Product
 from .forms import ItemAddForm
@@ -8,7 +9,9 @@ from decimal import Decimal
 def show_cart(request):
 	'''display user cart'''
 	cart = request.session.get(settings.CART_SESSION_ID, {})
+	#coupon_id = request.session.get()
 	form = ItemAddForm()
+	coupon_form = CouponApplyForm()
 	product_ids = cart.keys()
 	prod_ids = [int(i) for i in product_ids]
 	products = Product.objects.filter(pk__in=prod_ids)
@@ -16,14 +19,15 @@ def show_cart(request):
 	for product in products:
 		cart[str(product.id)]['product'] = product
 		cart[str(product.id)]['price'] = Decimal(cart[str(product.id)]['price'])
-		cart[str(product.id)]['total_price'] = cart[str(product.id)]['price'] * cart[str(product.id)]['quantity']
+		cart[str(product.id)]['total_price'] = cart[str(product.id)]['price'] * \
+											   cart[str(product.id)]['quantity']
 		q = cart[str(product.id)]['quantity']
-		cart[str(product.id)]['update_quantity_form'] = ItemAddForm(initial={'quantity':q,'update': True})
+		cart[str(product.id)]['update_quantity_form'] = ItemAddForm(initial={'quantity':q,
+																			 'update': True})
 
 	cart_total = get_cart_total(request, cart)																		 														 																	 
 	cart = cart.values()
-	cxt = {'cart': cart, 'cart_total': cart_total}
-	print cxt
+	cxt = {'cart': cart, 'cart_total': cart_total, 'coupon_form':coupon_form}
 	return render(request, 'cart/cart_detail.html', cxt)
 
 
