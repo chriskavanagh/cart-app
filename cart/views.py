@@ -19,8 +19,8 @@ def show_cart(request):
 	for product in products:
 		cart[str(product.id)]['product'] = product
 		cart[str(product.id)]['price'] = Decimal(cart[str(product.id)]['price'])
-		cart[str(product.id)]['total_price'] = cart[str(product.id)]['price'] * \
-											   cart[str(product.id)]['quantity']
+		cart[str(product.id)]['total_price'] = cart[str(product.id)]['price'] * cart[str(product.id)]['quantity']
+											   
 		q = cart[str(product.id)]['quantity']
 		cart[str(product.id)]['update_quantity_form'] = ItemAddForm(initial={'quantity':q,'update': True})
 																			 
