@@ -25,15 +25,17 @@ def show_cart(request):
 		cart[str(product.id)]['update_quantity_form'] = ItemAddForm(initial={'quantity':q,
 																			 'update': True})
 	disc = get_discount(request)
+	sub_total = get_cart_total(request, cart)
 	if disc > 0:
 		disc = disc / Decimal('100') * get_cart_total(request, cart)
-		print disc
-		cart_total = get_cart_total(request, cart) - disc
+		#sub_total = get_cart_total(request, cart)
+		cart_total = sub_total - disc
 	else:
-		cart_total = get_cart_total(request, cart)
-																					 														 																	 
+		disc = None
+		cart_total = sub_total
+
 	cart = cart.values()
-	cxt = {'cart': cart, 'cart_total': cart_total, 'coupon_form':coupon_form}
+	cxt = {'cart': cart,'sub_total':sub_total, 'cart_total': cart_total, 'coupon_form':coupon_form, 'disc':disc}
 	return render(request, 'cart/cart_detail.html', cxt)
 
 
