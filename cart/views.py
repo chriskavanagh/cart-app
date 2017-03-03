@@ -22,13 +22,12 @@ def show_cart(request):
 		cart[str(product.id)]['total_price'] = cart[str(product.id)]['price'] * \
 											   cart[str(product.id)]['quantity']
 		q = cart[str(product.id)]['quantity']
-		cart[str(product.id)]['update_quantity_form'] = ItemAddForm(initial={'quantity':q,
-																			 'update': True})
+		cart[str(product.id)]['update_quantity_form'] = ItemAddForm(initial={'quantity':q,'update': True})
+																			 
 	disc = get_discount(request)
 	sub_total = get_cart_total(request, cart)
 	if disc > 0:
 		disc = disc / Decimal('100') * get_cart_total(request, cart)
-		#sub_total = get_cart_total(request, cart)
 		cart_total = sub_total - disc
 	else:
 		disc = None
