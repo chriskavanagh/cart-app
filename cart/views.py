@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from coupons.models import Coupon
 from coupons.forms import CouponApplyForm
 from django.conf import settings
 from shop.models import Product
@@ -23,11 +24,20 @@ def show_cart(request):
 		q = cart[str(product.id)]['quantity']
 		cart[str(product.id)]['update_quantity_form'] = ItemAddForm(initial={'quantity':q,
 																			 'update': True})
-
+	get_discount(request)
 	cart_total = get_cart_total(request, cart)																		 														 																	 
 	cart = cart.values()
 	cxt = {'cart': cart, 'cart_total': cart_total, 'coupon_form':coupon_form}
 	return render(request, 'cart/cart_detail.html', cxt)
+
+
+def get_discount(request):
+	if request.session['coupon_id']:
+		pk = int(request.session['coupon_id'])
+		coupon = Coupon.objects.get(pk=pk)
+		return coupon.discount
+	else:
+		return None
 
 
 def add_item(request, pk):
@@ -65,7 +75,7 @@ def remove_item(request, pk):
 	return redirect('cart:show_cart')
 
 
-def get_cart_total(request, cart):  #add discount here
+def get_cart_total(request, cart):  #add discount here Decimal(.10)
 	'''gets cart total price.'''
 	return sum(Decimal(item['price']) * item['quantity'] for item in cart.values())
 
