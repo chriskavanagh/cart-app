@@ -19,15 +19,14 @@ def show_cart(request):
 	for product in products:
 		cart[str(product.id)]['product'] = product
 		cart[str(product.id)]['price'] = Decimal(cart[str(product.id)]['price'])
-		cart[str(product.id)]['total_price'] = cart[str(product.id)]['price'] * cart[str(product.id)]['quantity']
-											   
+		cart[str(product.id)]['total_price'] = cart[str(product.id)]['price'] * cart[str(product.id)]['quantity']											   
 		q = cart[str(product.id)]['quantity']
 		cart[str(product.id)]['update_quantity_form'] = ItemAddForm(initial={'quantity':q,'update': True})
 																			 
 	disc = get_discount(request)
 	sub_total = get_cart_total(request, cart)
 	if disc > 0:
-		disc = disc / Decimal('100') * get_cart_total(request, cart)
+		disc = disc / Decimal('100') * sub_total
 		cart_total = sub_total - disc
 	else:
 		disc = None
@@ -39,7 +38,7 @@ def show_cart(request):
 
 
 def get_cart_total(request, cart):  #add discount here Decimal(.10)
-	'''gets cart total price.'''
+	'''get cart total price.'''
 	return sum(Decimal(item['price']) * item['quantity'] for item in cart.values())
 
 
