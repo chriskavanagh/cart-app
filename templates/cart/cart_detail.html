@@ -64,8 +64,8 @@
             <div class="row">
                 <div class="col-md-4 pull-right">
                     <ul class="list-group">
-                        <li class="list-group-item">Sub-Total ${{ cart_total }}</li>                        
-                        <li class="list-group-item active">Total ${{ cart_total }}</li>
+                        <li class="list-group-item">Sub-Total ${{ cart_total|floatformat:"2" }}</li>                        
+                        <li class="list-group-item active">Total ${{ cart_total|floatformat:"2" }}</li>
                     </ul>
                 </div>
             </div>

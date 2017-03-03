@@ -24,18 +24,29 @@ def show_cart(request):
 		q = cart[str(product.id)]['quantity']
 		cart[str(product.id)]['update_quantity_form'] = ItemAddForm(initial={'quantity':q,
 																			 'update': True})
-	get_discount(request)
-	cart_total = get_cart_total(request, cart)																		 														 																	 
+	disc = get_discount(request)
+	if disc > 0:
+		disc = disc / Decimal('100') * get_cart_total(request, cart)
+		print disc
+		cart_total = get_cart_total(request, cart) - disc
+	else:
+		cart_total = get_cart_total(request, cart)
+																					 														 																	 
 	cart = cart.values()
 	cxt = {'cart': cart, 'cart_total': cart_total, 'coupon_form':coupon_form}
 	return render(request, 'cart/cart_detail.html', cxt)
+
+
+def get_cart_total(request, cart):  #add discount here Decimal(.10)
+	'''gets cart total price.'''
+	return sum(Decimal(item['price']) * item['quantity'] for item in cart.values())
 
 
 def get_discount(request):
 	if request.session['coupon_id']:
 		pk = int(request.session['coupon_id'])
 		coupon = Coupon.objects.get(pk=pk)
-		return coupon.discount
+		return Decimal(coupon.discount)
 	else:
 		return None
 
@@ -73,11 +84,6 @@ def remove_item(request, pk):
 		del cart[product_id]
 		save_cart(request, cart)
 	return redirect('cart:show_cart')
-
-
-def get_cart_total(request, cart):  #add discount here Decimal(.10)
-	'''gets cart total price.'''
-	return sum(Decimal(item['price']) * item['quantity'] for item in cart.values())
 
 
 def clear_cart(request):
