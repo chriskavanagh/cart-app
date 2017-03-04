@@ -3,6 +3,7 @@ from django.db import models
 from autoslug import AutoSlugField
 from django.core.urlresolvers import reverse
 
+
 # Create your models here.
 class Product(models.Model):
 	name = models.CharField(max_length=200, db_index=True)

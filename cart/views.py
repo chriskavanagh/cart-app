@@ -65,7 +65,7 @@ def add_item(request, pk):
 			update = form.cleaned_data['update']
 			if product_id not in cart:
 				cart[product_id] = {'product': product.name,
-									'quantity': quantity,
+									'quantity': 0,
 									'price': str(product.price)}															 					
 			if update:
 				cart[product_id]['quantity'] = quantity
