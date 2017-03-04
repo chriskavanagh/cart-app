@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from coupons.models import Coupon
 from coupons.forms import CouponApplyForm
+from coupons.models import Coupon
 from django.conf import settings
 from shop.models import Product
 from .forms import ItemAddForm
@@ -25,7 +25,8 @@ def show_cart(request):
 																			 
 	disc = get_discount(request)
 	sub_total = get_cart_total(request, cart)
-	if disc > 0:
+	
+	if disc:
 		disc = disc / Decimal('100') * sub_total
 		cart_total = sub_total - disc
 	else:
@@ -33,7 +34,7 @@ def show_cart(request):
 		cart_total = sub_total
 
 	cart = cart.values()
-	cxt = {'cart': cart,'sub_total':sub_total, 'cart_total': cart_total, 'coupon_form':coupon_form, 'disc':disc}
+	cxt = {'cart': cart,'sub_total':sub_total,'cart_total': cart_total, 'coupon_form':coupon_form,'disc':disc}
 	return render(request, 'cart/cart_detail.html', cxt)
 
 
@@ -65,8 +66,7 @@ def add_item(request, pk):
 			if product_id not in cart:
 				cart[product_id] = {'product': product.name,
 									'quantity': quantity,
-									'price': str(product.price)}
-															 					
+									'price': str(product.price)}															 					
 			if update:
 				cart[product_id]['quantity'] = quantity
 			else:
@@ -98,3 +98,14 @@ def save_cart(request, cart):
 	'''save user cart to session.'''
 	request.session[settings.CART_SESSION_ID] = cart
 	request.session.modified = True
+
+
+# def total_after_disc(request,sub_total, disc):
+# 	if disc:
+# 		disc = disc / Decimal('100') * sub_total
+# 		cart_total = sub_total - disc
+# 		return cart_total
+# 	else:
+# 		disc = None
+# 		cart_total = sub_total - disc
+# 		return cart_total

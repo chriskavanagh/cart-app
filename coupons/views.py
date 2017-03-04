@@ -4,6 +4,7 @@ from .forms import CouponApplyForm
 from django.utils import timezone
 from .models import Coupon
 
+
 # Create your views here.
 def coupon_apply(request):
 	now = timezone.now()
