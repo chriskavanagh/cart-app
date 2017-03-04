@@ -80,7 +80,9 @@
                 <div class="col-md-4 pull-right">
                     <ul class="list-group">
                         <li class="list-group-item">Sub-Total ${{ sub_total|floatformat:"2" }}</li>
-                        {% if disc is not None %}<li class="list-group-item">Your Discount: <span>-${{ disc|floatformat:"2" }}</span></li>{% endif %}
+                        {% if disc is not None %} <!--if there's a discount, place it in this <li>-->
+                        <li class="list-group-item">Your Discount: <span>-${{ disc|floatformat:"2" }}</span></li>
+                        {% endif %}
                         <li class="list-group-item active">Total ${{ cart_total|floatformat:"2" }}</li>
                     </ul>
                 </div>
