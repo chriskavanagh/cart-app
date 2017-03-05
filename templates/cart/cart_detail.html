@@ -64,6 +64,8 @@
                     
             <div class="row">                    
                    <div class="col-md-4 pull-right">
+                       <ul class="list-group">
+                           <li class="list-group-item">
                             <form class="form-inline" action="{% url 'coupons:apply' %}" method="POST">
                                     {% csrf_token %}
                                 <div class="form-group">
@@ -71,9 +73,11 @@
                                 </div>
                                 <button type="submit" class="btn btn-primary btn">Apply Coupon</button>
                             </form>
+                           </li>
+                       </ul>
                    </div>
                 </div>
-                <br/>  
+                  
                 
                 
             <div class="row">
@@ -86,9 +90,7 @@
                         <li class="list-group-item active">Total ${{ cart_total|floatformat:"2" }}</li>
                     </ul>
                 </div>
-            </div>
-               
-                
+            </div>      
                     
                     
          </div><!--/.col-->
