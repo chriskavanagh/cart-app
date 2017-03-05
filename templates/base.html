@@ -28,6 +28,7 @@
         div.table-responsive{margin-top:50px;}
         #itemProduct a{color:black;font-weight:bold;}
         #removeItem a{color:#DC143C;}
+        .badge{position:relative;top:6px;right:11px;}
     
     </style>
 
@@ -55,6 +56,7 @@
                     <li class="active"><a href="{% url 'shop:product_list' %}">Products</a></li>
                     <li><a href="#">About</a></li>
                     <li><a href="{% url 'cart:show_cart' %}"><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i></a></li>
+                    <li><span class="badge badge-warning">{{ cart_item_count }}</span></li>
                 </ul>
             </div><!--.nav-collapse -->
         </div>

@@ -32,7 +32,7 @@ def show_cart(request):
 	return render(request, 'cart/cart_detail.html', cxt)
 
 
-def get_cart_total(request, cart):  #add discount here Decimal(.10)
+def get_cart_total(request, cart):
 	'''get cart total price.'''
 	return sum(Decimal(item['price']) * item['quantity'] for item in cart.values())
 
