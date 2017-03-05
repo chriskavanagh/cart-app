@@ -22,19 +22,13 @@ def show_cart(request):
 		cart[str(product.id)]['total_price'] = cart[str(product.id)]['price'] * cart[str(product.id)]['quantity']											   
 		q = cart[str(product.id)]['quantity']
 		cart[str(product.id)]['update_quantity_form'] = ItemAddForm(initial={'quantity':q,'update': True})
-																			 
-	disc = get_discount(request)
-	sub_total = get_cart_total(request, cart)
-	
-	if disc:
-		disc = disc / Decimal('100') * sub_total
-		cart_total = sub_total - disc
-	else:
-		disc = None
-		cart_total = sub_total
+
+	sub_total = get_cart_total(request, cart)																		 
+	disc = get_discount(request, sub_total)	
+	cart_total = total_after_disc(request, sub_total, disc)
 
 	cart = cart.values()
-	cxt = {'cart': cart,'sub_total':sub_total,'cart_total': cart_total, 'coupon_form':coupon_form,'disc':disc}
+	cxt = {'cart': cart,'sub_total':sub_total,'cart_total': cart_total,'coupon_form':coupon_form,'disc':disc}									 
 	return render(request, 'cart/cart_detail.html', cxt)
 
 
@@ -43,13 +37,25 @@ def get_cart_total(request, cart):  #add discount here Decimal(.10)
 	return sum(Decimal(item['price']) * item['quantity'] for item in cart.values())
 
 
-def get_discount(request):
-	if request.session['coupon_id']:
-		pk = int(request.session['coupon_id'])
-		coupon = Coupon.objects.get(pk=pk)
-		return Decimal(coupon.discount)
+def get_discount(request, sub_total):
+    if request.session['coupon_id']:
+        pk = int(request.session['coupon_id'])
+        coupon = Coupon.objects.get(pk=pk)
+        disc = Decimal(coupon.discount) / Decimal('100') * sub_total
+        return disc
+    else:
+        return None
+
+
+def total_after_disc(request, sub_total, disc):
+	if disc:
+		#disc = disc / Decimal('100') * sub_total
+		cart_total = sub_total - disc
+		return cart_total
 	else:
-		return None
+		disc = 0
+		cart_total = sub_total - disc
+		return cart_total
 
 
 def add_item(request, pk):
@@ -100,12 +106,48 @@ def save_cart(request, cart):
 	request.session.modified = True
 
 
-# def total_after_disc(request,sub_total, disc):
-# 	if disc:
-# 		disc = disc / Decimal('100') * sub_total
-# 		cart_total = sub_total - disc
-# 		return cart_total
+# def get_discount(request):
+# 	if request.session['coupon_id']:
+# 		pk = int(request.session['coupon_id'])
+# 		coupon = Coupon.objects.get(pk=pk)
+# 		return Decimal(coupon.discount)
 # 	else:
-# 		disc = None
-# 		cart_total = sub_total - disc
-# 		return cart_total
+# 		return None
+
+
+# def show_cart(request):
+# 	'''display user cart'''
+# 	cart = request.session.get(settings.CART_SESSION_ID, {})
+# 	form = ItemAddForm()
+# 	coupon_form = CouponApplyForm()
+# 	product_ids = cart.keys()
+# 	prod_ids = [int(i) for i in product_ids]
+# 	products = Product.objects.filter(pk__in=prod_ids)
+
+# 	for product in products:
+# 		cart[str(product.id)]['product'] = product
+# 		cart[str(product.id)]['price'] = Decimal(cart[str(product.id)]['price'])
+# 		cart[str(product.id)]['total_price'] = cart[str(product.id)]['price'] * cart[str(product.id)]['quantity']											   
+# 		q = cart[str(product.id)]['quantity']
+# 		cart[str(product.id)]['update_quantity_form'] = ItemAddForm(initial={'quantity':q,'update': True})
+
+# 	sub_total = get_cart_total(request, cart)																		 
+# 	disc = get_discount(request, sub_total)	
+# 	#cart_total = total_after_disc(request, sub_total, disc)
+	
+# 	# if disc:
+# 	# 	disc = disc / Decimal('100') * sub_total
+# 	# 	cart_total = sub_total - disc
+# 	# else:
+# 	# 	disc = None
+# 	# 	cart_total = sub_total
+
+# 	cart = cart.values()
+# 	cxt = {
+# 			'cart': cart,
+# 			'sub_total':sub_total,
+# 			'cart_total': cart_total,
+# 			'coupon_form':coupon_form,
+# 			'disc':disc
+# 		   }								 
+# 	return render(request, 'cart/cart_detail.html', cxt)
