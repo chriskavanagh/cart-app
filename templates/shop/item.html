@@ -6,34 +6,37 @@
 {% block content %}
     <div class="container">
         <div class="starter-template">
-            <h1>L.L. Bean Online Store&nbsp;<a href="{% url 'cart:show_cart' %}"<span><i class="fa fa-cart-plus fa-1x" aria-hidden="true"></i></span></a></h1>
-            <h3>{{ request.user|capfirst }}</a></h3>
+            <h1>L.L. Bean Online Store&nbsp;<a href="{% url 'cart:show_cart' %}"</a></h1>
+            <h4>Go To Your Cart, {{ request.user|capfirst }}.</a></h4>
             <hr/>
-        <div class="table-responsive">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Item</th>
-                        <th>Description</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Add To Cart</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="text-left">{{ product.name }}</td>
-                        <td class="text-left">{{ product.description }}</td>
-                        <td class="text-left">{{ product.price }}</td>
-                    <form action="{% url 'cart:add_item' product.pk %}" method="POST">{% csrf_token %}
-                        <td class="text-left">{{ form.quantity }}{{ form.update }}</td>
-                        <td><input class='btn btn-success' type='submit' value='Add'></input></td>
+        
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div class="well">
+                    <p>{{ product.name }}</p>
+                    <p>{{ product.description }}</p>
+                    <p>{{ product.price }}</p>
+                    <b id="like_count">{{ product.likes }}</b> people like this product.
+                    <button id="likes" data-proid="{{ product.pk }}" class="btn btn-xs btn-primary" type="button">Like</button>
+                </div>
+            </div>
+        </div>  
+            
+            
+            
+        <div>
+            <div class="row">
+                <div class="col-md-6">
+                    <form action="{% url 'cart:add_item' product.pk %}" method="POST">
+                                {% csrf_token %}
+                                {{ form|crispy }}
+                        <input class='btn btn-primary btn-block' type='submit' value='Add'></input>
                     </form>
-                        
-                    </tr>
-                </tbody>
-             </table>
+                </div>
+             </div>
         </div>
+        
         </div>
     </div>
 {% endblock %}

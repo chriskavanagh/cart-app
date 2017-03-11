@@ -2,6 +2,7 @@
 {% load staticfiles %}
 
 
+
 {% block content %}
     <div class="container">
         <div class="starter-template">
@@ -14,10 +15,12 @@
                 <ul class="fa-ul">
                     {% for product in products %}
                     <li><i class="fa-li fa fa-check-square"></i><h4><a href="{{ product.get_absolute_url }}">{{ product }}: ${{ product.price }}</a></h4></li>
+                    
                     <hr>
                     {% endfor %}
                 </ul>
         </div>
     </div>
+
 {% endblock %}
    

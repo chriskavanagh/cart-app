@@ -38,7 +38,7 @@ def get_cart_total(request, cart):
 
 
 def get_discount(request, sub_total):
-    if request.session['coupon_id']:
+    if request.session.get('coupon_id', None):
         pk = int(request.session['coupon_id'])
         coupon = Coupon.objects.get(pk=pk)
         disc = Decimal(coupon.discount) / Decimal('100') * sub_total
@@ -49,7 +49,6 @@ def get_discount(request, sub_total):
 
 def total_after_disc(request, sub_total, disc):
 	if disc:
-		#disc = disc / Decimal('100') * sub_total
 		cart_total = sub_total - disc
 		return cart_total
 	else:
@@ -98,6 +97,7 @@ def clear_cart(request):
 	cart = {}
 	request.session[settings.CART_SESSION_ID] = cart
 	request.session.modified = True
+	#return redirect('cart:show_cart')
 
 
 def save_cart(request, cart):

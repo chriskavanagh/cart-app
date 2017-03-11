@@ -19,16 +19,20 @@
     <script src="https://use.fontawesome.com/669640701c.js"></script>
     {% block css %} {% endblock %}
     <style>
+        
         body{padding-top:50px;}
         .starter-template{padding:40px 15px;text-align:center;}
-        #id_quantity{width:65px;}
+        //#id_quantity{width:65px;}
         #top-container{background-color:#3A533A;}
         .top-h2{margin-bottom:30px;color:yellow;position:relative;top:30px;font-size:60px;font-family:'Playball', Arial, sans-serif;}
         h4{padding-top:10px;padding-bottom:10px;font-family: 'Eczar', serif;color:#DF744A;}
         div.table-responsive{margin-top:50px;}
         #itemProduct a{color:black;font-weight:bold;}
         #removeItem a{color:#DC143C;}
-        .badge{position:relative;top:6px;right:11px;}
+        .badge{position:relative;top:16px;right:8px;}
+        .fa-2x{font-size: 35px;margin-left:20px;position:relative;bottom:5px;}
+        .linav{padding-top:10px;}
+        .navbar-brand{margin-top:9px;}
     
     </style>
 
@@ -53,9 +57,9 @@
 
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="{% url 'shop:product_list' %}">Products</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="{% url 'cart:show_cart' %}"><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i></a></li>
+                    <li class="active linav"><a href="{% url 'shop:product_list' %}">Products</a></li>
+                    <li class="linav"><a href="#">About</a></li>
+                    <li class="linav"><a href="{% url 'cart:show_cart' %}" title="Your Cart" id="mycart"><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i></a></li>
                     <li><span class="badge badge-warning">{{ cart_item_count }}</span></li>
                 </ul>
             </div><!--.nav-collapse -->
@@ -72,6 +76,28 @@
         </div>    
     </div>
     
+    {# Bootstrap Modal #}
+    <div id="myModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title text-center"><a href="{% url 'cart:show_cart' %}">Go To Your Cart</a></h4>
+                </div>
+                <div class="modal-body">
+                    {% for item in cart_items %}    <!-- cart_items from context_processors.py -->
+                        <p>{{ item.product }}</p>
+                     {% endfor %}
+                    <p><a href="{% url 'cart:show_cart' %}">Go To Cart</a></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {# End Bootstrap Modal #}
+    
     
     {% block content %}
     {% endblock %}
@@ -79,5 +105,8 @@
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/modal.js' %}"></script>
+    
+    
     {% block js %} {% endblock %}
 </body>
