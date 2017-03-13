@@ -9,6 +9,7 @@ from .models import Product
 
 # Create your views here.
 def product_list(request):
+	'''show all products.'''
 	products = Product.objects.all()
 	#data = request.session.get('coupon_id')
 	cxt = {'products': products}
@@ -16,6 +17,7 @@ def product_list(request):
 
 
 def product_detail(request, slug):
+	'''show individual product.'''
 	product = get_object_or_404(Product, slug=slug, available=True)
 	form = ItemAddForm(initial={'quantity': 1, 'update': False})
 	cxt = {'product': product, 'form': form}
@@ -23,6 +25,7 @@ def product_detail(request, slug):
 
 
 def like_product(request):
+	'''like button for product.'''
 	pro_id = None
 	if request.method == 'GET':
 		pro_id = request.GET['product_id']
@@ -35,3 +38,17 @@ def like_product(request):
 			product.likes = likes
 			product.save()
 	return HttpResponse(likes)
+
+
+def user_likes(request, slug):
+	'''MTM relation to user, likes.'''
+	user = request.user
+	product = get_object_or_404(Product, slug=slug)
+	url = product.get_absolute_url()
+	if user in product.user_like.all():
+		product.user_like.remove(user)
+	else:
+		product.user_like.add(user)
+	return redirect(url)
+
+
