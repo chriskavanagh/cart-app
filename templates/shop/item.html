@@ -21,6 +21,7 @@
                     <button id="likes" data-proid="{{ product.pk }}" class="btn btn-xs btn-primary" type="button">Like</button>
                     <hr>
                     <a href="{% url 'shop:user_likes' product.slug %}" class="btn btn-default btn-sm" role="button">Like This!</a>
+                    <p><b>{{ product.like_count }}</b> people like this product.</p>
                 </div>
             </div>
         </div>  
