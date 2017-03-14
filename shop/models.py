@@ -16,7 +16,8 @@ class Product(models.Model):
 	created = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True)
 	likes = models.IntegerField(default = 0)
-	user_like = models.ManyToManyField(settings.AUTH_USER_MODEL,blank=True,related_name='product_likes')		   
+	user_like = models.ManyToManyField(settings.AUTH_USER_MODEL,blank=True,
+									   related_name='product_likes')		   
 
 	class Meta:
 		ordering = ('name',)
