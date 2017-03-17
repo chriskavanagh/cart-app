@@ -20,10 +20,8 @@
                     <b id="like_count">{{ product.likes }}</b> people like this product.
                     <button id="likes" data-proid="{{ product.pk }}" class="btn btn-xs btn-primary" type="button">Like</button>
                     <hr>
-                    <a href="{% url 'shop:user_likes' product.slug %}" class="btn btn-primary btn-xs" role="button">Like This!</a>
-                    
-                    <button id="like_link" data-proid="{{ product.pk }}" class="btn btn-xs btn-primary" type="button">Like Me!</button>
-                    <p id="like_num"><b></b> people like this product.</p>
+                    <a href="{% url 'shop:user_likes' product.slug %}" class="btn btn-primary btn-xs" id="like_link" role="button">Like This!</a>
+                    <p id="like_count"><b>{{ product.like_count }}</b> people like this product.</p>
                     <hr>
                     <p>You Liked These Products:</p>
                     

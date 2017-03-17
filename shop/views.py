@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
+from django.http import JsonResponse
 from cart.forms import ItemAddForm
 from django.conf import settings
 from .models import Product
@@ -45,10 +46,25 @@ def user_likes(request, slug):
 	user = request.user
 	product = get_object_or_404(Product, slug=slug)
 	url = product.get_absolute_url()
-	if user in product.user_like.all():
-		product.user_like.remove(user)
+	
+	if product.user_like.filter(id=user.id).exists():	# if user in product.user_like.all():
+		product.user_like.remove(user)		
 	else:
 		product.user_like.add(user)
 	return redirect(url)
+
+
+def like(request):
+	if request.method == 'GET':
+		pk = request.GET['product_id']
+		user = request.user
+		product = get_object_or_404(Product, pk=pk)
+
+		if product.user_like.filter(id=user.id).exists():
+			product.user_like.remove(user)
+		else:
+			product.user_like.add(user)
+	likes = product.like_count
+	return HttpResponse(likes)
 
 
