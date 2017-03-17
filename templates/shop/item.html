@@ -17,26 +17,21 @@
                     <h1 id="product_name">{{ product.name }}</h1>
                     <h4>{{ product.description }}</h4>
                     <p>${{ product.price }}</p>
-                    <b id="like_count">{{ product.likes }}</b> people like this product.
-                    <button id="likes" data-proid="{{ product.pk }}" class="btn btn-xs btn-primary" type="button">Like</button>
-                    <hr>
-                    <a href="{% url 'shop:user_likes' product.slug %}" class="btn btn-primary btn-xs" role="button">Like This!</a>
                     
-                    <button id="like_link" data-proid="{{ product.pk }}" class="btn btn-xs btn-primary" type="button">Like Me!</button>
-                    <p id="like_num"><b></b> people like this product.</p>
+                    
+                    <span><b id="like_num">{{ product.like_count }}</b></span> people like this product.
+                    <button id="like_link" data-proid="{{ product.pk }}" class="btn btn-xs btn-primary" type="button">Like Me!</button>                    
                     <hr>
                     <p>You Liked These Products:</p>
                     
                     {% with likes=user.product_likes.all %}
                         {% for product in likes %}
-                            <p><b>{{ product.name }}</b></p>
+                            <p>{{ product.name }}</p>
                         {% endfor %}
                     {% endwith %}
                 </div>
             </div>
-        </div>  
-            
-            
+        </div>           
             
         <div>
             <div class="row">

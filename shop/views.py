@@ -41,19 +41,6 @@ def like_product(request):
 	return HttpResponse(likes)
 
 
-def user_likes(request, slug):
-	'''MTM relation to user, likes.'''
-	user = request.user
-	product = get_object_or_404(Product, slug=slug)
-	url = product.get_absolute_url()
-	
-	if product.user_like.filter(id=user.id).exists():	# if user in product.user_like.all():
-		product.user_like.remove(user)		
-	else:
-		product.user_like.add(user)
-	return redirect(url)
-
-
 def like(request):
 	if request.method == 'GET':
 		pk = request.GET['product_id']
@@ -66,5 +53,21 @@ def like(request):
 			product.user_like.add(user)
 	likes = product.like_count
 	return HttpResponse(likes)
+
+
+# def user_likes(request, slug):
+# 	'''MTM relation to user, likes.'''
+# 	user = request.user
+# 	product = get_object_or_404(Product, slug=slug)
+# 	url = product.get_absolute_url()
+	
+# 	if product.user_like.filter(id=user.id).exists():	# if user in product.user_like.all():
+# 		product.user_like.remove(user)		
+# 	else:
+# 		product.user_like.add(user)
+# 	return redirect(url)
+
+
+
 
 
