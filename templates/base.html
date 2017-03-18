@@ -12,6 +12,7 @@
     <link rel="shortcut icon" href="">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.icon-large.min.css' %}" media="screen" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Playball' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Eczar" rel="stylesheet">
@@ -72,8 +73,7 @@
             <div class="col-md-12">
                 <h2 class="text-center top-h2">L.L. Bean Online Store</h2>
                 <h4 class="text-center">Your Cart, {{ request.user|capfirst }}</h4>
-             {# <h4>{{ likes }}</h4> #} <!--in context_processors.py-->
-                
+             {# <h4>{{ likes }}</h4> #} <!--in context_processors.py-->                
             </div>        
         </div>    
     </div>
