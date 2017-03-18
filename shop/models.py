@@ -1,8 +1,10 @@
 from __future__ import unicode_literals
+from django.core.urlresolvers import reverse
+from autoslug import AutoSlugField
 from django.conf import settings
 from django.db import models
-from autoslug import AutoSlugField
-from django.core.urlresolvers import reverse
+
+
 
 
 # Create your models here.

@@ -25,23 +25,8 @@ def product_detail(request, slug):
 	return render(request, 'shop/item.html', cxt)
 
 
-def like_product(request):
-	'''like button for product.'''
-	pro_id = None
-	if request.method == 'GET':
-		pro_id = request.GET['product_id']
-
-	likes = 0
-	if pro_id:
-		product = Product.objects.get(pk=int(pro_id))
-		if product:
-			likes = product.likes + 1
-			product.likes = likes
-			product.save()
-	return HttpResponse(likes)
-
-
 def like(request):
+	'''like button for product.'''
 	if request.method == 'GET':
 		pk = request.GET['product_id']
 		user = request.user
@@ -53,6 +38,22 @@ def like(request):
 			product.user_like.add(user)
 	likes = product.like_count
 	return HttpResponse(likes)
+
+
+# def like_product(request):
+# 	'''like button for product.'''
+# 	pro_id = None
+# 	if request.method == 'GET':
+# 		pro_id = request.GET['product_id']
+
+# 	likes = 0
+# 	if pro_id:
+# 		product = Product.objects.get(pk=int(pro_id))
+# 		if product:
+# 			likes = product.likes + 1
+# 			product.likes = likes
+# 			product.save()
+# 	return HttpResponse(likes)
 
 
 # def user_likes(request, slug):
