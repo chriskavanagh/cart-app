@@ -19,20 +19,26 @@
                     <p>${{ product.price }}</p>
                     
                     
-                    <span><b id="like_num">{{ product.like_count }}</b></span>{% if product.like_count >= 1 %} people like this product.{% else %} person likes this product.{% endif %}
+                    <span><b id="like_num">{{ product.like_count }}</b></span>{% if product.like_count > 1 %} people like this product.{% else %} person likes this product.{% endif %}
                     <button type="button" id="like_link" data-proid="{{ product.pk }}" class="btn btn-primary btn-sm"><i class="icon-large icon-thumbs-up"></i> Like Me!</button>                    
                     <hr>
-                    <p>You Liked These Products:</p>
+                    <hr>
                     
-                    {% with likes=user.product_likes.all %}
-                        {% for product in likes %}
-                            <p>{{ product.name }}</p>
-                        {% endfor %}
-                    {% endwith %}
+                    
+                        <p class="lead">You Liked These Products:</p>
+                        <d1>
+                        {% with likes=user.product_likes.all %}
+                            {% for product in likes %}
+                                <dt>{{ product.name }}</dt>
+                                <dd>-{{ product.description }}</dd>
+                            {% endfor %}
+                        {% endwith %}
+                        </d1>
+                    
                 </div>
             </div>
         </div>           
-            
+        <br><br><hr><br>
         <div>
             <div class="row">
                 <div class="col-md-3 col-md-offset-4">
