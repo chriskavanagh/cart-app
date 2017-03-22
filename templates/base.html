@@ -24,7 +24,7 @@
         body{padding-top:50px;}
         .starter-template{padding:40px 15px;text-align:center;}
         //#id_quantity{width:65px;}
-        #top-container{background-color:#3A533A;padding-top:20px;}
+        #top-container{background-color:#3A533A;padding-top:25px;padding-bottom:15px;}
         .top-h2{margin-bottom:30px;color:yellow;position:relative;top:30px;font-size:60px;font-family:'Playball', Arial, sans-serif;}
         h4{padding-top:10px;padding-bottom:10px;font-family: 'Eczar', serif;color:#DF744A;}
         div.table-responsive{margin-top:50px;}
@@ -35,6 +35,7 @@
         .linav{padding-top:10px;}
         .navbar-brand{margin-top:9px;}
         #product_name{color:#3A533A;}
+        .below-header{margin:1px;margin-right:35px;}
     
     </style>
 
@@ -73,7 +74,18 @@
             <div class="col-md-12">
                 <h2 class="text-center top-h2">L.L. Bean Online Store</h2>
                 <h4 class="text-center">Your Cart, {{ request.user|capfirst }}</h4>
-             {# <h4>{{ likes }}</h4> #}<!--in context_processors.py-->                
+             {# <h4>{{ likes }}</h4> #}<!--in context_processors.py-->
+                
+                <div class="row"> <!--inline list -->                    
+                        <div class="col-xs-12 text-center">
+                            <ul class="list-inline list-group-item" style="background-color:#f9ffe6">
+                                <li class="below-header">Customer Service</li>
+                                <li class="below-header">Find A Store</li>
+                                <li class="below-header">Gift Cards</li>
+                                <li class="below-header">Log In</li>
+                            </ul> 
+                        </div>
+                    </div> <!--end inline list -->
             </div>        
         </div>    
     </div>

@@ -26,7 +26,7 @@ def product_detail(request, slug):
 
 
 def like(request):
-	'''like button for product.'''
+	'''like button for product w/AJAX.'''
 	if request.method == 'GET':
 		pk = request.GET['product_id']
 		user = request.user
