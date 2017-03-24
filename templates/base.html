@@ -22,10 +22,11 @@
     <style>
         
         body{padding-top:50px;}
+        html body{background-color: #f1f1f1;}
         .starter-template{padding:40px 15px;text-align:center;}
         //#id_quantity{width:65px;}
-        #top-container{background-color:#3A533A;padding-top:25px;padding-bottom:15px;}
-        .top-h2{margin-bottom:30px;color:yellow;position:relative;top:30px;font-size:60px;font-family:'Playball', Arial, sans-serif;}
+        #top-container{background-color:#64a6bd;padding-top:25px;padding-bottom:15px;}
+        .top-h2{margin-bottom:30px;color:#F2F1EF;position:relative;top:30px;font-size:60px;font-family:'Playball', Arial, sans-serif;}
         h4{padding-top:10px;padding-bottom:10px;font-family: 'Eczar', serif;color:#DF744A;}
         div.table-responsive{margin-top:50px;}
         #itemProduct a{color:black;font-weight:bold;}
@@ -43,6 +44,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <link rel="stylesheet" href="https://bootflat.github.io/bootflat/css/bootflat.css">
 </head>
 
 <body>
@@ -73,12 +75,12 @@
         <div class="row">
             <div class="col-md-12">
                 <h2 class="text-center top-h2">L.L. Bean Online Store</h2>
-                <h4 class="text-center">Your Cart, {{ request.user|capfirst }}</h4>
+                <h4 class="text-center" style="color:#6C7A89;">Welcome, {{ request.user|capfirst }}</h4>
              {# <h4>{{ likes }}</h4> #}<!--in context_processors.py-->
                 
                 <div class="row"> <!--inline list -->                    
                         <div class="col-xs-12 text-center">
-                            <ul class="list-inline list-group-item" style="background-color:#f9ffe6">
+                            <ul class="list-inline list-group-item" style="background-color:#DADFE1">
                                 <li class="below-header">Customer Service</li>
                                 <li class="below-header">Find A Store</li>
                                 <li class="below-header">Gift Cards</li>
@@ -119,8 +121,12 @@
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://bootflat.github.io/bootflat/js/icheck.min.js"></script>
+    <script src="https://bootflat.github.io/bootflat/js/jquery.fs.selecter.min.js"></script>
+    <script src="https://bootflat.github.io/bootflat/js/jquery.fs.stepper.min.js"></script>
     <script src="{% static 'js/modal.js' %}"></script>
     
     
     {% block js %} {% endblock %}
 </body>
+</html>

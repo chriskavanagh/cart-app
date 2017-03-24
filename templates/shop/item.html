@@ -5,15 +5,14 @@
 
 {% block content %}
     <div class="container">
-        <div class="starter-template">
-            <h1>L.L. Bean Online Store&nbsp;<a href="{% url 'cart:show_cart' %}"</a></h1>
-            <h4>Go To Your Cart, {{ request.user|capfirst }}.</a></h4>
+        <div class="starter-template">            
+            <h4><a href="{% url 'cart:show_cart' %}">Go To Your Cart, {{ request.user|capfirst }}.</a></h4>
             <hr/>
         
         
         <div class="row">
             <div class="col-md-12">
-                <div class="well">
+               
                     <h1 id="product_name">{{ product.name }}</h1>
                     <h4>{{ product.description }}</h4>
                     <p>${{ product.price }}</p>
@@ -38,20 +37,39 @@
                             {% endfor %}
                         {% endwith %}
                         </d1><hr>
-                    
-                    <div class="row">
-                <div class="col-md-4 col-md-offset-4">
-                    <form action="{% url 'cart:add_item' product.pk %}" method="POST">
-                                {% csrf_token %}
-                                {{ form|crispy }}
-                       {# <input class='btn btn-primary btn-block' type='submit' value='Add'></input> #}
-                    <button type="submit" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-shopping-cart"></span> Add</button>
-                    </form>
-                </div>
-             </div>
+                
+                <div class="row" style="margin:20px;">
+                    <div class="pricing">
+                        <ul>
+                            <li class="unit price-primary">
+                                <div class="price-title">
+                                    <h3>${{ product.price }}</h3>
+                                    <p>Per Unit</p>
+                                </div>
+                                <div class="price-body">
+                                    <h4>{{ product.name }}</h4>
+                                    <p>{{ product.description }}</p>
+                                    <ul>
+                                        <li>250 SKU</li>
+                                        <li>1 GB Storage</li>
+                                        <li>3.5% Trans Fee</li>
+                                    </ul>
+                                </div>
+                                <div class="price-foot">
+                                    <form action="{% url 'cart:add_item' product.pk %}" method="POST">
+                                            {% csrf_token %}
+                                            {{ form|crispy }}
+                                        {# <input class='btn btn-primary btn-block' type='submit' value='Add'></input> #}
+                                        <button type="submit" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-shopping-cart"></span> Add</button>
+                                    </form>
+                                </div>
+                        
+                        </ul>                   
+                    </div><!--end pricing div-->                
+                </div><!--end row-->
                     
                 
-            </div><!--./well-->
+            
         </div>           
         <br><br><hr><br>
         <div>

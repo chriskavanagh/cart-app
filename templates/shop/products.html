@@ -4,17 +4,18 @@
 
 
 {% block content %}
-    <div class="container">
+    <div class="container" style="background:#5D9CEC">
         <div class="starter-template">
             <div class="row">
                 <div class="col-md-12">
-                    <h1 style="margin-bottom:120px;margin-top:60px;font-family:'Eczar',serif;color:#dde27f">Shop For Your Favorite Clothes</h1>
+                    <h2 style="margin-top:60px;font-family:'Eczar',serif;color:#6C7A89">Shop For Your Favorite Clothes</h2><hr>
+                    <h3 style="color:#6C7A89;margin-bottom:120px;font-family:'Eczar',serif;">Men's Clothing</h3>
                 </div>
             </div>
             
-            
+        
             <div class="row">
-                <div class="col-md-9">
+                <div class="col-md-9" style="background:white";>
                 <ul class="fa-ul">
                     {% for product in products %}
                     <li><i class="fa-li fa fa-check-square"></i><h4><a href="{{ product.get_absolute_url }}">{{ product }}: ${{ product.price }}</a></h4></li>                    
