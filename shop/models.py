@@ -41,13 +41,11 @@ class Friendship(models.Model):
 	from_friend = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="friend_set")
 	to_friend = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="to_friend_set")
 
+	class Meta:
+		unique_together = (('to_friend', 'from_friend'), )
 
 	def __unicode__(self):
 		return "{} is following {}".format(self.from_friend.username, self.to_friend.username)
-
-
-	class Meta:
-		unique_together = (('to_friend', 'from_friend'), )
 
 
 
