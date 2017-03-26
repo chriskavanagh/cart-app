@@ -4,7 +4,7 @@ from django.http import HttpResponse, Http404
 from django.http import JsonResponse
 from cart.forms import ItemAddForm
 from django.conf import settings
-from .models import Product
+from .models import Product, Friend
 
 
 

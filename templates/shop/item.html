@@ -9,15 +9,15 @@
             <div class="starter-template">
 
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-5">
             <!-------------------------------------- begin tabs -------------------------------------->
                             <ul class="nav nav-tabs">
-                              <li class="active"><a href="#tab_a" data-toggle="tab">Product</a></li>
-                              <li><a href="#tab_b" data-toggle="tab">Description</a></li>
-                              <li><a href="#tab_c" data-toggle="tab">Price</a></li>                          
+                              <li class="active" style="padding-right:40px;padding-left:35px;"><a href="#tab_a" data-toggle="tab">Product</a></li>
+                              <li style="padding-right:30px;padding-left:20px;"><a href="#tab_b" data-toggle="tab">Description</a></li>
+                              <li style="padding-left:30px;"><a href="#tab_c" data-toggle="tab">Price</a></li>                          
                             </ul>                  
                         
-                             <div class="tab-content">
+                             <div class="tab-content well">
                                 <div class="tab-pane fade in active" id="tab_a">
                                     <h4>{{ product.name }}</h4>
                                     <p>{% lorem 1p random %}</p>
@@ -31,11 +31,12 @@
                                         <p>{% lorem 1p random %}</p>
                                     </div>                       
                                 </div><!-- tab content -->
-                        </div><!-- end col -->
+                            
+                            </div>
             <!-------------------------------------- end tabs -------------------------------------->
                             
                 <div class="col-md-6">
-                        <div class="pricing" >
+                        <div class="pricing">
                             <ul>
                             <li class="unit price-primary">
                                 <div class="price-title">
@@ -86,7 +87,8 @@
         <div class="container-fluid" style="background-color:white;">
            <div class="container"> 
                 <div class="row">
-                    <div class="col-md-6" style="border-style:solid;border-width:1px;border-color:#f1f1f1;margin-top:51px;padding:18px;">
+                    <div class="col-md-6" style="border-style:solid;border-width:1px;border-color:#f1f1f1;margin-top:51px;padding:18px;margin-bottom:20px;">
+                        
                             <p class="lead text-center" style="padding-top:5px;">You Liked These Products</p>
                             <d1>
                             {% with likes=user.product_likes.all %}
@@ -96,14 +98,12 @@
                                 {% endfor %}
                             {% endwith %}
                             </d1>
-                        </div><br>
+                    </div><!-- end col-md-6 -->
                     
-            
-            
-                    
+                   
                 </div><!-- end row -->
-                </div>
-            </div><!-- end container-fluid -->
+            </div><!-- end col-md-6 -->
+        </div><!-- end container-fluid -->
 
                  
 {% endblock %}

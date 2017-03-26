@@ -3,6 +3,7 @@ from django.core.urlresolvers import reverse
 from autoslug import AutoSlugField
 from django.conf import settings
 from django.db import models
+from django.contrib.auth.models import User
 
 
 
@@ -33,3 +34,28 @@ class Product(models.Model):
 
 	def get_absolute_url(self):
 		 return reverse('shop:product_detail', args=[self.slug])
+
+
+
+class Friendship(models.Model):
+	from_friend = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="friend_set")
+	to_friend = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="to_friend_set")
+
+
+	def __unicode__(self):
+		return "{} is following {}".format(self.from_friend.username, self.to_friend.username)
+
+
+	class Meta:
+		unique_together = (('to_friend', 'from_friend'), )
+
+
+
+class Friend(models.Model):
+	users = models.ManyToManyField(User, related_name="friends")
+	current_user = models.ForeignKey(User, related_name="owner")
+
+	@classmethod
+	def make_friend(cls, current_user, new_friend):		
+		friend, created = cls.objects.get_or_create(current_user=current_user)
+		friend.users.add(new_friend)
