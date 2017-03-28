@@ -1,10 +1,9 @@
 from __future__ import unicode_literals
 from django.core.urlresolvers import reverse
+from django.contrib.auth.models import User
 from autoslug import AutoSlugField
 from django.conf import settings
 from django.db import models
-from django.contrib.auth.models import User
-
 
 
 
@@ -55,5 +54,29 @@ class Friend(models.Model):
 
 	@classmethod
 	def make_friend(cls, current_user, new_friend):		
-		friend, created = cls.objects.get_or_create(current_user=current_user)
+		friend = cls.objects.get_or_create(current_user=current_user)[0]
 		friend.users.add(new_friend)
+
+	def __unicode__(self):
+		return self.current_user.username
+
+
+class Contact(models.Model):
+	user_from = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="rel_from_set")
+	user_to = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="rel_to_set")
+	created = models.DateTimeField(auto_now_add=True)
+
+	class Meta:
+		ordering = ('-created',)
+
+	def __unicode__(self):
+		return "{} follows {}".format(self.user_from, self.user_to)
+
+
+User.add_to_class("following",
+				   models.ManyToManyField("self",
+				   						   through=Contact,
+				   						   related_name="followers",
+				   						   symmetrical=False))
+
+

@@ -23,10 +23,11 @@ def product_detail(request, slug):
 	form = ItemAddForm(initial={'quantity': 1, 'update': False})
 	user = request.user
 	friend = user.owner.get(id=1)
+	print friend
 	friends = friend.users.all()
-	people = [f.username for f in friends]	
 	print friends
-	print people
+	#people = [f.username for f in friends]	
+	#print people
 	cxt = {'product': product, 'form': form}
 	return render(request, 'shop/item.html', cxt)
 

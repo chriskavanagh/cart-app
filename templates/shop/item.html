@@ -9,7 +9,7 @@
             <div class="starter-template">
 
                     <div class="row">
-                        <div class="col-md-5">
+                        <div class="col-lg-5">
             <!-------------------------------------- begin tabs -------------------------------------->
                             <ul class="nav nav-tabs">
                               <li class="active" style="padding-right:40px;padding-left:35px;"><a href="#tab_a" data-toggle="tab">Product</a></li>
@@ -35,7 +35,7 @@
                             </div>
             <!-------------------------------------- end tabs -------------------------------------->
                             
-                <div class="col-md-6">
+                <div class="col-lg-6">
                         <div class="pricing">
                             <ul>
                             <li class="unit price-primary">
@@ -99,10 +99,20 @@
                             {% endwith %}
                             </d1>
                     </div><!-- end col-md-6 -->
+                <div class="col-md-6" style="border-style:solid;border-width:1px;border-color:#f1f1f1;margin-top:51px;padding:18px;margin-bottom:20px;">
+                    <p class="lead text-center" style="padding-top:5px;">You Are Following These People</p>
+                        {% with friends=user.following.all %}
+                            {% for friend in friends %}
+                            <ul>
+                                <li>{{ friend }}</li>
+                            </ul>
+                            {% endfor %}
+                        {% endwith %}
+                </div>
                     
                    
                 </div><!-- end row -->
-            </div><!-- end col-md-6 -->
+            </div><!-- end container -->
         </div><!-- end container-fluid -->
 
                  
