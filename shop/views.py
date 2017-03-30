@@ -4,16 +4,18 @@ from django.http import HttpResponse, Http404
 from django.http import JsonResponse
 from cart.forms import ItemAddForm
 from django.conf import settings
-from .models import Product, Friend
+from .models import Product, Friend, Contact, Friendship
+from mysite.forms import UserSignInForm
 
 
 
 # Create your views here.
 def product_list(request):
 	'''show all products.'''
+	form = UserSignInForm()
 	products = Product.objects.all()
 	#data = request.session.get('coupon_id')
-	cxt = {'products': products}
+	cxt = {'products': products, 'form':form}
 	return render(request, 'shop/products.html', cxt)
 
 
