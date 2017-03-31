@@ -65,6 +65,7 @@
             </div>
 
             <div class="collapse navbar-collapse">
+                {% if not user.is_authenticated %}
                 <form class="navbar-form navbar-right" action="{% url 'my_login' %}" method="POST">{% csrf_token %}
                      <div class="form-group"  style="padding-top:13px;">
                          {{ form.username }}
@@ -75,6 +76,11 @@
                     </div>
                         <input class='btn btn-success' type='submit' value='Login'  style="margin-top:10px;" />
                 </form>
+                {% else %}
+                <div class="navbar-form navbar-right" class="form-control">
+                     <a href="{% url 'user_logout' %}" class="btn btn-default" style="margin-top:13px;">Logout</a>
+                </div>
+                {% endif %}
                 <ul class="nav navbar-nav">
                     <li class="active linav"><a href="{% url 'shop:product_list' %}">Products</a></li>
                     <li class="linav"><a href="#">About</a></li>
@@ -105,6 +111,16 @@
             </div>        
         </div>    
     </div>
+    
+    <!-- messages -->
+    {% if messages %}
+        
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }}" role="alert">{{ message }}</div>
+            {% endfor %}
+        
+    {% endif %}
+<!-- end messages -->
     
     {# Bootstrap Modal #}
     <div id="myModal" class="modal fade">
