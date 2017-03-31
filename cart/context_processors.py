@@ -17,6 +17,6 @@ def show_cart_items(request):
 
 def user_likes(request):
 	user = request.user
-	likes = user.product_likes.all()
+	likes = request.user.product_likes.all()
 	prod_names = [str(p.name) for p in likes]
 	return {'likes': prod_names}

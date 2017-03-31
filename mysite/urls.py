@@ -17,10 +17,12 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from . import views
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^my-login/$', views.my_login, name='my_login'),
     url(r'^shop/', include('shop.urls', namespace='shop')),
     url(r'^cart/', include('cart.urls', namespace='cart')),
     url(r'^coupons/', include('coupons.urls', namespace='coupons')),
