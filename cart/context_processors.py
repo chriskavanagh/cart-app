@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib.auth.models import User
 #from shop.models import Product
 
 
@@ -17,6 +18,6 @@ def show_cart_items(request):
 
 def user_likes(request):
 	user = request.user
-	likes = request.user.product_likes.all()
+	likes = user.product_likes.all()
 	prod_names = [str(p.name) for p in likes]
 	return {'likes': prod_names}

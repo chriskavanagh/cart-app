@@ -1,0 +1,56 @@
+[
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$30000$bUH0qIzJIkGJ$Bhf+r2Jn0E0STDSLyzeMQkSyvxlnaGiqG4o+B7RZkgc=",
+    "last_login": "2017-03-31T06:49:35.001Z",
+    "is_superuser": true,
+    "username": "chris",
+    "first_name": "",
+    "last_name": "",
+    "email": "ckava3@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2017-02-20T10:14:18.924Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$30000$FdRXw6hcg8Nt$9h8Jhvvn6jkLMPYGFH1ngxlX6LSqA2H2sI5QpvEPnvw=",
+    "last_login": "2017-03-13T20:15:23.245Z",
+    "is_superuser": true,
+    "username": "Ken",
+    "first_name": "Ken",
+    "last_name": "Kavanagh",
+    "email": "ckava1@msn.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2017-03-13T20:13:06Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$30000$qyNwM8JjyDmD$GIaBx++tH06T7p/7bOOwzzoW9E6jCIg1Csn6k/kihJc=",
+    "last_login": "2017-03-13T20:19:29.804Z",
+    "is_superuser": true,
+    "username": "Martha",
+    "first_name": "Martha",
+    "last_name": "Kavanagh",
+    "email": "marthakavanagh@cox.net",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2017-03-13T20:13:24Z",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]

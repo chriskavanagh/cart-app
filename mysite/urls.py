@@ -21,12 +21,15 @@ from . import views
 
 
 urlpatterns = [
+    
     url(r'^admin/', admin.site.urls),
-    url(r'^my-logout/$', views.user_logout, name='user_logout'),
-    url(r'^my-login/$', views.my_login, name='my_login'),
+    #url(r'^my-logout/$', views.user_logout, name='user_logout'),
+    #url(r'^my-login/$', views.my_login, name='my_login'),
     url(r'^shop/', include('shop.urls', namespace='shop')),
     url(r'^cart/', include('cart.urls', namespace='cart')),
     url(r'^coupons/', include('coupons.urls', namespace='coupons')),
+    url(r'^accounts/', include('allauth.urls')),
+
 ]
 
 

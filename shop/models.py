@@ -49,8 +49,8 @@ class Friendship(models.Model):
 
 
 class Friend(models.Model):
-	users = models.ManyToManyField(User, related_name="friends")
-	current_user = models.ForeignKey(User, related_name="owner")
+	users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="friends")
+	current_user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="owner")
 
 	@classmethod
 	def make_friend(cls, current_user, new_friend):		

@@ -34,6 +34,15 @@ SITE_ID = 1
 INTERNAL_IPS = '127.0.0.1'
 DEBUG_TOOLBAR_PATCH_SETTINGS = False
 
+## settings for django-authtools
+#AUTH_USER_MODEL = 'authtools.User'
+
+
+## AUTHENTICATION_BACKENDS ##
+AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend',
+                           'allauth.account.auth_backends.AuthenticationBackend',]
+ 
+
 
 # Application definition
 
@@ -51,6 +60,10 @@ INSTALLED_APPS = [
     'coupons',
     'bootstrap3',
     'debug_toolbar',
+    #'authtools',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 ]
 
 MIDDLEWARE = [
@@ -146,4 +159,27 @@ STATICFILES_DIRS = (
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+
+## Crispy Forms Settings
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+
+## Email Settings ##
+
+# API Sendgrid Settings
+EMAIL_BACKEND = "sgbackend.SendGridBackend"
+SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
+
+
+## Allauth Settings ##
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory' 
+ACCOUNT_USERNAME_REQUIRED = False
+
+# SMTP Sendgrid Settings
+# EMAIL_HOST = 'smtp.sendgrid.net'
+# EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+# EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
