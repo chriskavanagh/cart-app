@@ -33,12 +33,12 @@ def signup(request):
 
 @login_required
 def user_logout(request):
-	'''standard user Logout.'''
+	'''standard user logout.'''
 	logout(request)
 	return redirect(request.META.get('HTTP_REFERER'))
 
 
-def my_login(request):
+def user_login(request):
 	'''standard user login.'''
 	if request.method == 'POST':
 		form = UserSignInForm(request.POST)		
