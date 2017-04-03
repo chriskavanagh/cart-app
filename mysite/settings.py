@@ -39,11 +39,13 @@ DEBUG_TOOLBAR_PATCH_SETTINGS = False
 
 
 ## AUTHENTICATION_BACKENDS ##
-AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend',
-                           'allauth.account.auth_backends.AuthenticationBackend',]
+AUTHENTICATION_BACKENDS = [
+
+        'django.contrib.auth.backends.ModelBackend',
+        'allauth.account.auth_backends.AuthenticationBackend',
+     ]
+
  
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -64,6 +66,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -183,3 +186,7 @@ ACCOUNT_USERNAME_REQUIRED = False
 # EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 # EMAIL_PORT = 587
 # EMAIL_USE_TLS = True
+
+LOGIN_REDIRECT_URL = 'shop:product_list'
+LOGIN_URL = 'account_login'
+#LOGOUT_REDIRECT_URL = 

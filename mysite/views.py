@@ -6,7 +6,7 @@ from django.core.mail import EmailMultiAlternatives
 from django.http import HttpResponse, Http404
 from django.core.mail import send_mail
 from django.contrib import messages
-from .forms import UserSignInForm
+from .forms import UserSignInForm, SignUpForm
 
 ## send_mail('Subject here', 'Here is the message.',
 ## 'from@example.com', ['to@example.com'],
@@ -15,17 +15,33 @@ from .forms import UserSignInForm
 
 
 # Create your views here.
+def signup(request):
+	'''standard uer registration form.'''
+	if request.method == 'POST':
+		form = SignUpForm(request.POST)
+		if form.is_valid():
+			form.save()
+			username = form.cleaned_data.get('username')
+			raw_password = form.cleaned_data.get('password1')
+			user = authenticate(username=username, password=raw_password)
+			login(request, user)
+			return redirect('shop:product_list')
+	else:
+		form = SignUpForm()
+	return render(request, 'signup.html', {'form': form})
+
+
 @login_required
 def user_logout(request):
-	'''Logout User.'''
+	'''standard user Logout.'''
 	logout(request)
 	return redirect(request.META.get('HTTP_REFERER'))
 
 
 def my_login(request):
-	'''Log User In.'''
-	form = UserSignInForm(request.POST)
-	if request.method == 'POST':		
+	'''standard user login.'''
+	if request.method == 'POST':
+		form = UserSignInForm(request.POST)		
 		if form.is_valid():
 			username = form.cleaned_data['username']
 			password = form.cleaned_data['password']
