@@ -35,7 +35,7 @@ class Product(models.Model):
 		 return reverse('shop:product_detail', args=[self.slug])
 
 
-
+## from Django 1.0 Website Development p 192
 class Friendship(models.Model):
 	from_friend = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="friend_set")
 	to_friend = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="to_friend_set")
@@ -47,7 +47,7 @@ class Friendship(models.Model):
 		return "{} is following {}".format(self.from_friend.username, self.to_friend.username)
 
 
-
+## from https://www.youtube.com/watch?v=nwpLCa79DUw&list=PLw02n0FEB3E3VSHjyYMcFadtQORvl1Ssj&index=56
 class Friend(models.Model):
 	users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="friends")
 	current_user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="owner")
@@ -61,6 +61,7 @@ class Friend(models.Model):
 		return self.current_user.username
 
 
+## from Django By Example
 class Contact(models.Model):
 	user_from = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="rel_from_set")
 	user_to = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="rel_to_set")

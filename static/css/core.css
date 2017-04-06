@@ -1,0 +1,26 @@
+body{padding-top:50px;}
+html body{background-color: #f1f1f1;}
+.starter-template{padding:40px 15px;text-align:center;}
+//#id_quantity{width:65px;}
+#top-container{background-color:#64a6bd;padding-top:25px;padding-bottom:15px;}
+.top-h2{margin-bottom:30px;color:#F2F1EF;position:relative;top:30px;font-size:60px;font-family:'Playball', Arial, sans-serif;}
+h4{padding-top:10px;padding-bottom:10px;font-family: 'Eczar', serif;color:#DF744A;}
+div.table-responsive{margin-top:50px;}
+#itemProduct a{color:black;font-weight:bold;}
+#removeItem a{color:#DC143C;}
+.badge{position:relative;top:16px;right:8px;}
+.fa-2x{font-size: 35px;margin-left:20px;position:relative;bottom:5px;}
+.linav{margin-top:18px;font-size:20px;}
+
+.navbar-brand{margin-top:9px;color: #F6BB42 !important;}
+#product_name{color:#3A533A;}
+.below-header{margin:1px;margin-right:35px;}
+// ul.nav-tabs{font-family:'Eczar',serif;color:#6C7A89;font-size:20px;position:relative;}
+//.nav-tabs li{background-color:#F6BB42;}
+.droid{font:font-family: Droid Sans;}
+//ul > li{color:white;font-size:19px;}
+.navbar-brand{color:white;font-size:20px;margin-top:18px;}
+.glyphicon{color:#FFCE54;}
+//.navbar-inverse .navbar-text, .navbar-inverse .navbar-nav > li > a {color:#CCD1D9 !important;}
+.badge-warning{background-color:#F6BB42;color:black;}
+.navbar-inverse .navbar-nav > li > a{color:#AAB2BD !important;}

@@ -14,7 +14,7 @@ from .forms import UserSignInForm, SignUpForm
 
 
 
-# Create your views here.
+## no longer used. allauth is used instead
 def signup(request):
 	'''standard uer registration form.'''
 	if request.method == 'POST':
@@ -31,13 +31,15 @@ def signup(request):
 	return render(request, 'signup.html', {'form': form})
 
 
+## no longer used. allauth is used instead
 @login_required
 def user_logout(request):
 	'''standard user logout.'''
 	logout(request)
 	return redirect(request.META.get('HTTP_REFERER'))
+	
 
-
+## no longer used. allauth is used instead
 def user_login(request):
 	'''standard user login.'''
 	if request.method == 'POST':

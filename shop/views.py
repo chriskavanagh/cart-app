@@ -5,14 +5,15 @@ from django.http import JsonResponse
 from cart.forms import ItemAddForm
 from django.conf import settings
 from .models import Product, Friend, Contact, Friendship
-from mysite.forms import UserSignInForm
+from mysite.forms import UserSignInForm, testFormBootstrap3
 
 
 
 # Create your views here.
 def product_list(request):
 	'''show all products.'''
-	form = UserSignInForm()
+	#form = UserSignInForm()
+	form = testFormBootstrap3()
 	products = Product.objects.all()
 	#data = request.session.get('coupon_id')
 	cxt = {'products': products, 'form':form}
@@ -24,13 +25,12 @@ def product_detail(request, slug):
 	product = get_object_or_404(Product, slug=slug, available=True)
 	form = ItemAddForm(initial={'quantity': 1, 'update': False})
 	user = request.user
-	friend = user.owner.get(id=1)
-	print friend
-	friends = friend.users.all()
-	print friends
+	following = user.following.all()
+	#followers = user.followers.all()
+	print following
+	#print followers
 	#people = [f.username for f in friends]	
-	#print people
-	cxt = {'product': product, 'form': form}
+	cxt = {'product': product, 'form': form, 'following':following}
 	return render(request, 'shop/item.html', cxt)
 
 

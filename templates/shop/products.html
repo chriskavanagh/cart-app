@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load bootstrap %}
 
-
+{% block css %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>    
+    {{ form.media }}
+{% endblock %}
 
 {% block content %}
-    <div class="container" style="background:#5D9CEC">
+    <div class="container">
         <div class="starter-template">
             <div class="row">
                 <div class="col-md-12">
@@ -15,7 +19,7 @@
             
         
             <div class="row">
-                <div class="col-md-9" style="background:white";>
+                <div class="col-md-9">
                 <ul class="fa-ul">
                     {% for product in products %}
                     <li><i class="fa-li fa fa-check-square"></i><h4><a href="{{ product.get_absolute_url }}">{{ product }}: ${{ product.price }}</a></h4></li>                    
@@ -44,6 +48,19 @@
                 </div>
             </div>
         </div>
-    </div>
+        
+
+    <div class="row">
+        <div class='col-sm-6'>            
+               <form action="." method="POST" style="margin-bottom:150px;color:white;">
+                    {% csrf_token %}
+                    {{ form.as_table }}                
+                <input class="btn btn-default btn-block" id="submit" type="submit" value="Submit">
+            </form>            
+        </div>        
+    </div>        
+</div>
+
+     
 {% endblock %}
    

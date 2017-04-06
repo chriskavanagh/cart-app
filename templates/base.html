@@ -12,7 +12,9 @@
     <title>Starter Template for Bootstrap 3.3.7</title>
     <link rel="shortcut icon" href="">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">    
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'css/core.css' %}">
     <!--<link rel="stylesheet" href="{% static 'css/bootstrap.icon-large.min.css' %}" media="screen" type="text/css">-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Playball' type='text/css'>
@@ -21,37 +23,13 @@
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">   
     <script src="https://use.fontawesome.com/669640701c.js"></script>
     {% block css %} {% endblock %}
-    <style>
-        
-        body{padding-top:50px;}
-        html body{background-color: #f1f1f1;}
-        .starter-template{padding:40px 15px;text-align:center;}
-        //#id_quantity{width:65px;}
-        #top-container{background-color:#64a6bd;padding-top:25px;padding-bottom:15px;}
-        .top-h2{margin-bottom:30px;color:#F2F1EF;position:relative;top:30px;font-size:60px;font-family:'Playball', Arial, sans-serif;}
-        h4{padding-top:10px;padding-bottom:10px;font-family: 'Eczar', serif;color:#DF744A;}
-        div.table-responsive{margin-top:50px;}
-        #itemProduct a{color:black;font-weight:bold;}
-        #removeItem a{color:#DC143C;}
-        .badge{position:relative;top:16px;right:8px;}
-        .fa-2x{font-size: 35px;margin-left:20px;position:relative;bottom:5px;}
-        .linav{padding-top:12px;font-size:21px;}
-        .navbar-brand{margin-top:9px;}
-        #product_name{color:#3A533A;}
-        .below-header{margin:1px;margin-right:35px;}
-       // ul.nav-tabs{font-family:'Eczar',serif;color:#6C7A89;font-size:20px;position:relative;}
-        //.nav-tabs li{background-color:#F6BB42;}
-        .droid{font:font-family: Droid Sans;}
-        //ul > li{color:white;font-size:19px;}
-        .navbar-brand{color:white;font-size:20px;margin-top:13px;}
     
-    </style>
 
     <!--[if IE]>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <link rel="stylesheet" href="https://bootflat.github.io/bootflat/css/bootflat.css">
+    {#<link rel="stylesheet" href="https://bootflat.github.io/bootflat/css/bootflat.css">#}
 </head>
 
 <body>
@@ -64,14 +42,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Ecommerce Project</a>
+                <a class="navbar-brand" href="#">L.L. Bean Online Store</a>
             </div>
 
             <div class="collapse navbar-collapse">
                 
                 
                 <ul class="nav navbar-nav">
-                    <li class="linav"><a href="{% url 'shop:product_list' %}">Products</a></li>
+                    <li class="linav"><a href="{% url 'shop:product_list' %}" style="color:red;">Products</a></li>
                     <li class="linav"><a href="{% url 'account_login' %}">About</a></li>
                     <li class="linav"><a href="{% url 'cart:show_cart' %}" title="Your Cart" id="mycart"><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i></a></li>
                     <li><span class="badge badge-warning">{{ cart_item_count }}</span></li>
@@ -110,7 +88,10 @@
     {% if messages %}
         
             {% for message in messages %}
-              <div class="alert alert-{{ message.tags }}" role="alert">{{ message }}</div>
+        <div class="alert alert-{{ message.tags }} alert-dismissable">
+            <button class="close" type="button" data-dismiss="alert" aria-hidden="true">×</button>
+            {{ message }}
+        </div>
             {% endfor %}
         
     {% endif %}
@@ -141,13 +122,32 @@
     
     {% block content %}
     {% endblock %}
-    
-    
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="footer">
+                        <div class="container">
+                            <div class="clearfix">
+                                <div class="footer-logo">Test</div>
+                                <div class="footer-nav"></div>
+                                <div class="footer-nav"></div>
+                                <div class="footer-nav"></div>
+                                <div class="footer-nav">Test</div>
+                                
+                            </div>
+                            <div class="footer-copyright text-center">Copyright © 2014 Flathemes.All rights reserved.</div>
+                        </div>
+                    
+                    </div>                
+                </div>
+            </div>
+        </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://bootflat.github.io/bootflat/js/icheck.min.js"></script>
-    <script src="https://bootflat.github.io/bootflat/js/jquery.fs.selecter.min.js"></script>
-    <script src="https://bootflat.github.io/bootflat/js/jquery.fs.stepper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>    
+    
+    {#<script src="https://bootflat.github.io/bootflat/js/icheck.min.js"></script>#}
+    {#<script src="https://bootflat.github.io/bootflat/js/jquery.fs.selecter.min.js"></script>#}
+    {#<script src="https://bootflat.github.io/bootflat/js/jquery.fs.stepper.min.js"></script>#}
     <script src="{% static 'js/modal.js' %}"></script>
     
     

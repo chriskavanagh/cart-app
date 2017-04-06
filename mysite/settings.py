@@ -67,6 +67,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'widget_tweaks',
+    'bootstrapform',
+    'datetimewidget',
 ]
 
 MIDDLEWARE = [

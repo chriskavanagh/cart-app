@@ -3,10 +3,16 @@ Django==1.10.5
 django-allauth==0.31.0
 django-authtools==1.5.0
 django-autoslug==1.9.3
+django-bootstrap-datepicker==1.2.2
+django-bootstrap-form==3.2.1
 django-bootstrap3==8.2.1
+django-bootstrap3-datetimepicker-2==2.4.2
 django-crispy-forms==1.6.1
+django-datetime-widget==0.9.3
 django-debug-toolbar==1.7
 django-password-strength==1.2.1
+django-widget-tweaks==1.4.1
+jsmin==2.2.1
 oauthlib==2.0.2
 packaging==16.8
 pyparsing==2.1.10

@@ -1,6 +1,10 @@
 from django import forms
 from django.contrib.auth.models import User
+#from bootstrap_datepicker.widgets import DatePicker
+from datetimewidget.widgets import DateTimeWidget, DateWidget, TimeWidget
 from django.contrib.auth.forms import UserCreationForm
+
+
 
 class UserSignInForm(forms.Form):
 	username= forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
@@ -17,3 +21,9 @@ class SignUpForm(UserCreationForm):
 	class Meta:
 		model = User
 		fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2',)
+
+
+class testFormBootstrap3(forms.Form):
+	date = forms.DateField(widget=DateWidget(usel10n=True, bootstrap_version=3))
+	#todo = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control"}))
+	#date = forms.DateField(widget=DatePicker(options={"format": "mm/dd/yyyy","autoclose": True}))
