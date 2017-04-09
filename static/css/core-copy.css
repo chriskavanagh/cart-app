@@ -1,40 +1,84 @@
 body{padding-top:50px;}
 html body{background-color: #f1f1f1;}
 .starter-template{padding:40px 15px;text-align:center;}
+//#id_quantity{width:65px;}
 #top-container{background-color:#64a6bd;padding-top:25px;padding-bottom:15px;}
 .top-h2{margin-bottom:30px;color:#F2F1EF;position:relative;top:30px;font-size:60px;font-family:'Playball', Arial, sans-serif;}
 h4{padding-top:10px;padding-bottom:10px;font-family: 'Eczar', serif;color:#DF744A;}
 div.table-responsive{margin-top:50px;}
 #itemProduct a{color:black;font-weight:bold;}
 #removeItem a{color:#DC143C;}
-.badge{position:absolute;top:15px;right:8px;font-size:9px;background-color:#F6BB42;color:black;}
-.navbar-brand{color:#F6BB42 !important;}
-.fa.fa-shopping-cart{font-size:35px;color:#E6E9ED;}
-.linav{margin-top:7px;font-size:16px;}
-.navbar-right > li > a{color:#F6BB42 !important;}
-.navbar-left > li > a{color:#F6BB42 !important;}
-.navbar-header{margin-top:7px;}
+//.badge{position:relative;top:16px;right:8px;}
+//.fa-2x{font-size:35px;margin-left:20px;position:relative;bottom:5px;}
+.fa.fa-shopping-cart{font-size:30px;}
+//.linav{margin-top:18px;font-size:20px;}
+//.navbar{min-height:33px !important;}
+//.navbar navbar-inverse navbar-fixed-top{min-height:33px !important;}
+//.navbar-brand{margin-top:12px;color: #F6BB42 !important;}
 #product_name{color:#3A533A;}
 .below-header{margin:1px;margin-right:35px;}
-ul.nav-tabs{font-family:'Eczar',serif;color:#6C7A89;font-size:20px;position:relative;}
+// ul.nav-tabs{font-family:'Eczar',serif;color:#6C7A89;font-size:20px;position:relative;}
+//.nav-tabs li{background-color:#F6BB42;}
 .droid{font:font-family: Droid Sans;}
+//ul > li{color:white;font-size:19px;}
+//.navbar-brand{color:white;font-size:20px;margin-top:18px;}
+.glyphicon{color:#FFCE54;}
+//.navbar-inverse .navbar-text, .navbar-inverse .navbar-nav > li > a {color:#CCD1D9 !important;}
+.badge-warning{background-color:#F6BB42;color:black;}
+//.navbar-inverse .navbar-nav > li > a{color:#AAB2BD !important;}
+.footer{background-color:#f1f1f1 !important;}
 .table-condensed{background-color:white;} /*for bootstrap calendar due to bootflat*/
 
-
-@media (max-width:767px) {
-
-  .badge{
-    color:red;
-    position:relative;
-    top:-15px;
-    left:-5px
-  }
- 
+//@media (max-width: 991px) {
+    .navbar-header {
+        float: none;
+    }
+    .navbar-left,.navbar-right {
+        float: none !important;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-fixed-top {
+        top: 0;
+        border-width: 0 0 1px;
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin-top: 7.5px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .collapse.in{
+        display:block !important;
+    }
+   .navbar-nav .open .dropdown-menu {
+       position: static;
+       float: none;
+       width: auto;
+       margin-top: 0;
+       background-color: transparent;
+       border: 0;
+       -webkit-box-shadow: none;
+       box-shadow: none;
+    }
 }
 
 
+
 /*Footer Rules*/
-.footer{background-color:#f1f1f1 !important;}
 .footer-dark {
   padding:50px 0;
   color:#f0f9ff;

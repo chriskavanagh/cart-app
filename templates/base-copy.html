@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load crispy_forms_tags %}
 {% load tz %}
 
 <!DOCTYPE html>
@@ -11,7 +12,9 @@
     <title>Starter Template for Bootstrap 3.3.7</title>
     <link rel="shortcut icon" href="">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">    
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'css/core.css' %}">
     <!--<link rel="stylesheet" href="{% static 'css/bootstrap.icon-large.min.css' %}" media="screen" type="text/css">-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Playball' type='text/css'>
@@ -20,35 +23,13 @@
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">   
     <script src="https://use.fontawesome.com/669640701c.js"></script>
     {% block css %} {% endblock %}
-    <style>
-        
-        body{padding-top:50px;}
-        html body{background-color: #f1f1f1;}
-        .starter-template{padding:40px 15px;text-align:center;}
-        //#id_quantity{width:65px;}
-        #top-container{background-color:#64a6bd;padding-top:25px;padding-bottom:15px;}
-        .top-h2{margin-bottom:30px;color:#F2F1EF;position:relative;top:30px;font-size:60px;font-family:'Playball', Arial, sans-serif;}
-        h4{padding-top:10px;padding-bottom:10px;font-family: 'Eczar', serif;color:#DF744A;}
-        div.table-responsive{margin-top:50px;}
-        #itemProduct a{color:black;font-weight:bold;}
-        #removeItem a{color:#DC143C;}
-        .badge{position:relative;top:16px;right:8px;}
-        .fa-2x{font-size: 35px;margin-left:20px;position:relative;bottom:5px;}
-        .linav{padding-top:10px;}
-        .navbar-brand{margin-top:9px;}
-        #product_name{color:#3A533A;}
-        .below-header{margin:1px;margin-right:35px;}
-       // ul.nav-tabs{font-family:'Eczar',serif;color:#6C7A89;font-size:20px;position:relative;}
-        //.nav-tabs li{background-color:#F6BB42;}
-        .droid{font:font-family: Droid Sans;}
     
-    </style>
 
     <!--[if IE]>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <link rel="stylesheet" href="https://bootflat.github.io/bootflat/css/bootflat.css">
+   <link rel="stylesheet" href="https://bootflat.github.io/bootflat/css/bootflat.css">
 </head>
 
 <body>
@@ -61,31 +42,22 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Ecommerce Project</a>
+                <a class="navbar-brand" href="#">L.L. Bean Online Store</a>
             </div>
 
             <div class="collapse navbar-collapse">
-                {% if not user.is_authenticated %}
-               {# <form class="navbar-form navbar-right" action="{% url 'my_login' %}" method="POST">{% csrf_token %} #}
-                     <div class="form-group"  style="padding-top:13px;">
-                         {{ form.username }}
-                    </div>
-                    
-                    <div class="form-group"  style="padding-top:13px;">
-                        {{ form.password }}
-                    </div>
-                        <input class='btn btn-success' type='submit' value='Login'  style="margin-top:10px;" />
-                </form> 
-                {% else %}
-                <div class="navbar-form navbar-right" class="form-control" >
-                   {#  <a href="{% url 'user_logout' %}" class="btn btn-default" style="margin-top:13px;">Logout</a> #}
-                </div>
-                {% endif %}
-                <ul class="nav navbar-nav">
-                    <li class="active linav"><a href="{% url 'shop:product_list' %}">Products</a></li>
-                    <li class="linav"><a href="#">About</a></li>
+                
+                
+                <ul class="nav navbar-nav navbar-left">
+                    <li class="linav"><a href="{% url 'shop:product_list' %}">Products</a></li>
+                    <li class="linav"><a href="{% url 'account_login' %}">About</a></li>
                     <li class="linav"><a href="{% url 'cart:show_cart' %}" title="Your Cart" id="mycart"><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i></a></li>
                     <li><span class="badge badge-warning">{{ cart_item_count }}</span></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="linav"><a href="{% url 'account_logout' %}"><span class="glyphicon glyphicon-eye-close" aria-hidden="true" style="padding-right:5px;font-size:16px;"></span>Logout</a></li>
+                    <li class="linav"><a href="{% url 'account_login' %}"><span class="glyphicon glyphicon-pencil" aria-hidden="true" style="padding-right:5px;font-size:16px;"></span>Login</a></li>
+                    <li class="linav"><a href="{% url 'account_signup' %}"><span class="glyphicon glyphicon-user" aria-hidden="true" style="padding-right:5px;font-size:16px;"></span>Register</a></li>
                 </ul>
             </div><!--.nav-collapse -->
         </div>
@@ -116,7 +88,10 @@
     {% if messages %}
         
             {% for message in messages %}
-              <div class="alert alert-{{ message.tags }}" role="alert">{{ message }}</div>
+        <div class="alert alert-{{ message.tags }} alert-dismissable">
+            <button class="close" type="button" data-dismiss="alert" aria-hidden="true">×</button>
+            {{ message }}
+        </div>
             {% endfor %}
         
     {% endif %}
@@ -148,12 +123,42 @@
     {% block content %}
     {% endblock %}
     
-    
+<div class="footer-dark">
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-push-6 item text">
+                    <h3>L.L. Bean Online Store</h3>
+                    <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo.</p>
+                </div>
+                <div class="col-md-3 col-md-pull-6 col-sm-4 item">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Web design</a></li>
+                        <li><a href="#">Development</a></li>
+                        <li><a href="#">Hosting</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-md-pull-6 col-sm-4 item">
+                    <h3>About</h3>
+                    <ul>
+                        <li><a href="#">Company</a></li>
+                        <li><a href="#">Team</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-12 col-sm-4 item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a></div>
+            </div>
+            <p class="copyright">Home Office Web Devlopment © 2016</p>
+        </div>
+    </footer>
+</div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://bootflat.github.io/bootflat/js/icheck.min.js"></script>
-    <script src="https://bootflat.github.io/bootflat/js/jquery.fs.selecter.min.js"></script>
-    <script src="https://bootflat.github.io/bootflat/js/jquery.fs.stepper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>    
+    
+    {#<script src="https://bootflat.github.io/bootflat/js/icheck.min.js"></script>#}
+    {#<script src="https://bootflat.github.io/bootflat/js/jquery.fs.selecter.min.js"></script>#}
+    {#<script src="https://bootflat.github.io/bootflat/js/jquery.fs.stepper.min.js"></script>#}
     <script src="{% static 'js/modal.js' %}"></script>
     
     
