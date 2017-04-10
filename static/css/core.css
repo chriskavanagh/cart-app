@@ -22,14 +22,12 @@ ul.nav-tabs{font-family:'Eczar',serif;color:#6C7A89;font-size:20px;position:rela
 
 
 @media (max-width:767px) {
-
   .badge{
     color:red;
     position:relative;
     top:-15px;
-    left:-5px
-  }
- 
+    left:-9px
+  } 
 }
 
 

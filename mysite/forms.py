@@ -1,8 +1,9 @@
 from django import forms
 from django.contrib.auth.models import User
 #from bootstrap_datepicker.widgets import DatePicker
-from datetimewidget.widgets import DateTimeWidget, DateWidget, TimeWidget
 from django.contrib.auth.forms import UserCreationForm
+from datetimewidget.widgets import DateTimeWidget, DateWidget, TimeWidget
+
 
 
 
