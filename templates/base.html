@@ -11,7 +11,7 @@
     <meta name="author" content="">
     <title>Starter Template for Bootstrap 3.3.7</title>
     <link rel="shortcut icon" href="">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">#}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"> 
     <link rel="stylesheet" href="https://bootflat.github.io/bootflat/css/bootflat.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/core.css' %}">
@@ -29,18 +29,18 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-  {#<link rel="stylesheet" href="https://bootflat.github.io/bootflat/css/bootflat.css">#}
+  <link rel="stylesheet" href="https://bootflat.github.io/bootflat/css/bootflat.css">
 </head>
 
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top" style="padding-bottom:0px;margin-bottom:70px;">
+    <nav class="navbar navbar-inverse" style="padding-bottom:0px;margin-bottom:0px;">
     <div class="container">
         <div class="navbar-header"><a href="#" class="navbar-brand navbar-link"><strong>L.L. Bean Online Store!</strong></a>
             <button data-toggle="collapse" data-target="#navcol-1" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
         </div>
         <div class="collapse navbar-collapse" id="navcol-1">
             <ul class="nav navbar-nav navbar-left">
-                <li role="presentation" class=linav><a href="{% url 'shop:product_list' %}">Products</a></li>
+                <li role="presentation" class=linav><a href="{% url 'shop:product_list' %}"><strong>Products</strong></a></li>
                 <li role="presentation"><a href="{% url 'cart:show_cart' %}"><i class="fa fa-shopping-cart"></i><span class="badge badge-warning">{{ cart_item_count }}</span></a></li>
                 
             </ul>

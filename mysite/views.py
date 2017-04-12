@@ -16,7 +16,7 @@ from .forms import UserSignInForm, SignUpForm
 
 ## no longer used. allauth is used instead
 def signup(request):
-	'''standard uer registration form.'''
+	'''standard user registration form.'''
 	if request.method == 'POST':
 		form = SignUpForm(request.POST)
 		if form.is_valid():

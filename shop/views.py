@@ -27,8 +27,6 @@ def product_detail(request, slug):
 	user = request.user
 	following = user.following.all()
 	#followers = user.followers.all()
-	print following
-	#print followers
 	#people = [f.username for f in friends]	
 	cxt = {'product': product, 'form': form, 'following':following}
 	return render(request, 'shop/item.html', cxt)

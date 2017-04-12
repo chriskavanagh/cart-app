@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
 from autoslug import AutoSlugField
 from django.conf import settings
 from django.db import models
@@ -23,6 +24,12 @@ class Product(models.Model):
 
 	class Meta:
 		ordering = ('name',)
+
+	def save(self, *args, **kwargs):
+		prod = super(Product, self).save(*args, **kwargs)
+		message = "{} was created at {}".format(self.name, self.created.strftime('%Y-%m-%d, %I:%M %p'))
+		send_mail('Product Created',message,'from@example.com',['ckava3@gmail.com'],fail_silently=False)
+  		return prod
 
 	def __unicode__(self):
 		return self.name
