@@ -7,15 +7,15 @@ div.table-responsive{margin-top:50px;}
 #itemProduct a{color:black;font-weight:bold;}
 #removeItem a{color:#DC143C;}
 .badge{position:absolute;top:15px;right:8px;font-size:9px;background-color:#F6BB42;color:black;}
-.navbar-brand{color:#F6BB42 !important;font-family:'Eczar',serif;margin-top:1px;}
+.navbar-brand{color:#F5F5F5 !important;font-family:'Eczar',serif;margin-top:1px;font-size:20px;}
 .fa.fa-shopping-cart{font-size:35px;color:#E6E9ED;}
 .linav{margin-top:7px;font-size:16px;}
-.navbar-right > li > a{color:#F6BB42 !important;}
-.navbar-left > li > a{color:#F6BB42 !important;}
+.navbar-right > li > a{color:#FFFFFF !important;font-size:18px;}
+.navbar-left > li > a{color:#FFFFFF !important;font-size:18px;}
 .navbar-header{margin-top:7px;}
 #product_name{color:#3A533A;}
 .below-header{margin:1px;margin-right:35px;}
-ul.nav-tabs{font-family:'Eczar',serif;color:#6C7A89;font-size:20px;position:relative;}
+ul.nav-tabs{font-family:'Eczar',serif;color:#6C7A89;font-size:18px;position:relative;}
 .droid{font:font-family: Droid Sans;}
 .table-condensed{background-color:white;} /*for bootstrap calendar due to bootflat*/
 

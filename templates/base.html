@@ -3,21 +3,21 @@
 {% load tz %}
 
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Starter Template for Bootstrap 3.3.7</title>
-    <link rel="shortcut icon" href="">
+    <link rel="shortcut icon" href="#">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"> 
     <link rel="stylesheet" href="https://bootflat.github.io/bootflat/css/bootflat.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/core.css' %}">
     <!--<link rel="stylesheet" href="{% static 'css/bootstrap.icon-large.min.css' %}" media="screen" type="text/css">-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Playball' type='text/css'>
+    <link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Playball' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css?family=Eczar" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">   
@@ -57,7 +57,11 @@
         <div class="row">
             <div class="col-md-12">
                 <h2 class="text-center top-h2">L.L. Bean Online Store</h2>
+                {% if user.is_authenticated %}
                 <h4 class="text-center" style="color:#6C7A89;">Welcome, {{ request.user|capfirst }}</h4>
+                {% else %}
+                <h4 class="text-center" style="color:#6C7A89;">Welcome! Please Register To Join.</h4>
+                {% endif %}
              {# <h4>{{ likes }}</h4> #}<!--in context_processors.py-->
                 
                 <div class="row"> <!--inline list -->                    
@@ -113,6 +117,8 @@
     {% block content %}
     {% endblock %}
     
+<!----------Footer------------>
+    
 <div class="footer-dark" style="margin-top:420px;">
     <footer>
         <div class="container">
@@ -150,6 +156,7 @@
     {#<script src="https://bootflat.github.io/bootflat/js/jquery.fs.selecter.min.js"></script>#}
     {#<script src="https://bootflat.github.io/bootflat/js/jquery.fs.stepper.min.js"></script>#}
     <script src="{% static 'js/modal.js' %}"></script>
+    
     
     
     {% block js %} {% endblock %}

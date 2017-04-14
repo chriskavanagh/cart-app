@@ -25,10 +25,13 @@ def product_detail(request, slug):
 	product = get_object_or_404(Product, slug=slug, available=True)
 	form = ItemAddForm(initial={'quantity': 1, 'update': False})
 	user = request.user
-	following = user.following.all()
+	if user.is_authenticated():
+		following = user.following.all() ## must check if user.is_authenticated()
+		cxt = {'product': product, 'form': form, 'following':following}
+	else:
+		cxt = {'product': product, 'form': form}	
 	#followers = user.followers.all()
-	#people = [f.username for f in friends]	
-	cxt = {'product': product, 'form': form, 'following':following}
+	#people = [f.username for f in friends]
 	return render(request, 'shop/item.html', cxt)
 
 

@@ -26,10 +26,10 @@ class Product(models.Model):
 		ordering = ('name',)
 
 	def save(self, *args, **kwargs):
-		prod = super(Product, self).save(*args, **kwargs)
+		item = super(Product, self).save(*args, **kwargs)
 		message = "{} was created at {}".format(self.name, self.created.strftime('%Y-%m-%d, %I:%M %p'))
 		send_mail('Product Created',message,'from@example.com',['ckava3@gmail.com'],fail_silently=False)
-  		return prod
+  		return item
 
 	def __unicode__(self):
 		return self.name
