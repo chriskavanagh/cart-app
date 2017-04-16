@@ -26,7 +26,7 @@ def product_detail(request, slug):
 	form = ItemAddForm(initial={'quantity': 1, 'update': False})
 	user = request.user
 	if user.is_authenticated():
-		following = user.following.all() ## must check if user.is_authenticated()
+		following = user.following.all()
 		cxt = {'product': product, 'form': form, 'following':following}
 	else:
 		cxt = {'product': product, 'form': form}	

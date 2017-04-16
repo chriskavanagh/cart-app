@@ -6,27 +6,38 @@ h4{padding-top:10px;padding-bottom:10px;font-family: 'Eczar', serif;color:#DF744
 div.table-responsive{margin-top:50px;}
 #itemProduct a{color:black;font-weight:bold;}
 #removeItem a{color:#DC143C;}
-.badge{position:absolute;top:15px;right:8px;font-size:9px;background-color:#F6BB42;color:black;}
-.navbar-brand{color:#F5F5F5 !important;font-family:'Eczar',serif;margin-top:1px;font-size:20px;}
+.badge{position:absolute;top:15px;right:8px;font-size:9px;background-color:#F6BB42;color:#DC143C;}
+.navbar-brand{color:white !important;font-family:'Eczar',serif;margin-top:1px;font-size:20px;}
 .fa.fa-shopping-cart{font-size:35px;color:#E6E9ED;}
 .linav{margin-top:7px;font-size:16px;}
-.navbar-right > li > a{color:#FFFFFF !important;font-size:18px;}
-.navbar-left > li > a{color:#FFFFFF !important;font-size:18px;}
+.navbar-right > li > a{color:#3333ff !important;font-size:18px;letter-spacing: 2px;}
+.navbar-left > li > a{color:#3333ff !important;font-size:18px;letter-spacing: 2px;}
 .navbar-header{margin-top:7px;}
 #product_name{color:#3A533A;}
 .below-header{margin:1px;margin-right:35px;}
 ul.nav-tabs{font-family:'Eczar',serif;color:#6C7A89;font-size:18px;position:relative;}
 .droid{font:font-family: Droid Sans;}
 .table-condensed{background-color:white;} /*for bootstrap calendar due to bootflat*/
+.item-col{margin-top:50px;}
+.navbar-custom{background-color:#484848 !important;}
+.navbar-custom .navbar-toggle .icon-bar{background-color:white;}
 
+
+/* Media Queries */
 
 @media (max-width:767px) {
   .badge{
-    color:red;
+    color:#DC143C;
     position:relative;
     top:-15px;
     left:-9px
-  } 
+  }
+}
+
+@media (max-width:991px) {
+  .navbar-right > li > a{color:#3333ff !important;font-size:16px;}
+  .navbar-left > li > a{color:#3333ff !important;font-size:16px;}
+  }
 }
 
 
@@ -116,7 +127,7 @@ ul.nav-tabs{font-family:'Eczar',serif;color:#6C7A89;font-size:18px;position:rela
 
 .footer-dark .item.social > a:hover {
   opacity:0.9;
-  
+
 }
 
 .footer-dark .copyright {
@@ -129,5 +140,3 @@ ul.nav-tabs{font-family:'Eczar',serif;color:#6C7A89;font-size:18px;position:rela
 }
 
 .footer-dark h3{color:#4A89DC;}
-
-
